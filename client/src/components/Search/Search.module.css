@@ -1,0 +1,41 @@
+.form {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+
+.searchbar {
+    position: relative;
+
+}
+
+.autocomplete {
+    background-color: white;
+    position: absolute;
+    top: 2rem;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: 300px;
+    border: 1px solid black;
+
+}
+
+
+.option {
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+}
+
+.option.highlighted {
+    background-color: lightgray;
+    
+}
+
