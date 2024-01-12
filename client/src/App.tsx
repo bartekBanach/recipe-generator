@@ -7,6 +7,8 @@ import dummyData from './data/dummyData';
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [offset, setOffset] = useState<number>(0);
   const [total, setTotal] = useState<number | null>(null);
 
@@ -14,44 +16,55 @@ function App() {
     cuisines: [],
     diets: [],
     intolerances: [],
-    mealTypes: null,
+    mealType: '',
   });
 
   const getRecipes = async () => {
-    const res = await axios.request({
-      method: 'GET',
-      url: 'http://localhost:4000/recipes',
-      params: {
-        ingredients: ingredients.map((item) => item.name).join(','),
-        offset: offset,
-        cuisine: filters.cuisines.map((item) => item.name).join(','),
-      },
-    });
-
-    console.log(res);
-    if (offset === 0) setRecipes(res.data.results);
-    else if (offset > 0)
-      setRecipes((prev) => {
-        return [...prev, ...res.data.results];
+    setLoading(true);
+    try {
+      const res = await axios.request({
+        method: 'GET',
+        url: 'http://localhost:4000/recipes',
+        params: {
+          ingredients: ingredients.map((item) => item.name).join(','),
+          offset: offset,
+          cuisine: filters.cuisines.map((item) => item.name).join(','),
+          diet: filters.diets.map((item) => item.name).join(','),
+          intolerances: filters.intolerances.map((item) => item.name).join(','),
+          type: filters.mealType,
+        },
       });
 
-    setTotal(res.data.totalResults);
-    console.log(total);
+      if (offset === 0) setRecipes(res.data.results);
+      else if (offset > 0)
+        setRecipes((prev) => {
+          return [...prev, ...res.data.results];
+        });
+      setTotal(res.data.totalResults);
+    } catch (err) {
+      console.log(error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    //getRecipes();
+    getRecipes();
 
     //Use dummy data instead
-    if (offset === 0) setRecipes(dummyData.slice(0, 3));
+    /*if (offset === 0) setRecipes(dummyData.slice(0, 3));
     else if (offset > 0)
       setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);
-    setTotal(60);
+    setTotal(60);*/
   }, [ingredients, filters, offset]);
 
   const loadMore = () => {
     setOffset((prev) => prev + 3);
   };
+
+  if (loading) return <>Loading results...</>;
+  if (error) return <>Couldnt't load recipes due to network error</>;
 
   return (
     <>
@@ -83,7 +96,7 @@ function App() {
               </div>
             </div>
           ))}
-        {recipes.length + 3 <= total ? (
+        {total && recipes.length + 3 <= total ? (
           <button
             type="button"
             className={styles.moreButton}

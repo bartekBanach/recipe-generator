@@ -24,5 +24,5 @@ type Filters = {
     cuisines: Option[],
     diets: Option[],
     intolerances: Option[],
-    mealTypes: Option | null,
+    mealType: string,
   }

@@ -67,9 +67,30 @@ const Search = ({
               placeholder="cuisine"
               onChange={(value) => changeFilterAttribute(value, 'cuisines')}
             />
-            <select>
+            <MultiSelect
+              options={diets}
+              value={filters.diets}
+              placeholder="diets"
+              onChange={(value) => changeFilterAttribute(value, 'diets')}
+            />
+            <MultiSelect
+              options={intolerances}
+              value={filters.intolerances}
+              placeholder="intolerances"
+              onChange={(value) => changeFilterAttribute(value, 'intolerances')}
+            />
+
+            <select
+              value={filters.mealType}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, mealType: e.target.value }))
+              }
+            >
+              <option value="">meal type</option>
               {mealTypes.map((item) => (
-                <option key={item.id}>{item.name}</option>
+                <option key={item.id} value={item.name}>
+                  {item.name}
+                </option>
               ))}
             </select>
           </div>
