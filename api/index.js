@@ -13,7 +13,7 @@ app.get('/recipes', async (req, res) => {
 
 
     console.log(req.query.ingredients);
-    console.log(req.query.offset);
+    console.log(req.query.cuisine);
 
     const options = {
         method: 'GET',
@@ -23,11 +23,12 @@ app.get('/recipes', async (req, res) => {
         params: {
             includeIngredients: req.query.ingredients, 
             type: 'main course', 
-            number: 1, 
+            number: 3, 
             sort: 'max-used-ingredients', 
             addRecipeInformation: true, 
             fillIngredients: true,
             offset: req.query.offset,
+            cuisine: req.query.cuisine
         },
         headers: {
             'x-api-key': process.env.SPOONACULAR_API_KEY,
@@ -36,9 +37,10 @@ app.get('/recipes', async (req, res) => {
 
     try {
         const response = await axios.request(options);
+        console.log(response);
         //const sorted = response.data.results.sort((a,b) => a.missedIngredientCount - b.missedIngredientCount);
-        const sorted = response.data.results;
-        res.status(200).json(sorted);
+        //const sorted = response.data.results;
+        res.status(200).json(response.data);
 
     } catch(error) {
         console.log(error)

@@ -42,3 +42,8 @@
   color: green;
 }
 
+.moreButton {
+  background-color: var(--gray100);
+}
+
+

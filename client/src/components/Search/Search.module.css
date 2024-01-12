@@ -12,6 +12,15 @@
 
 }
 
+.filters {
+
+}
+
+.filters select {
+    max-height: 100px;
+    overflow: auto;
+}
+
 .autocomplete {
     background-color: white;
     position: absolute;

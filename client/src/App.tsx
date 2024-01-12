@@ -2,20 +2,20 @@ import styles from './App.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Fridge from './components/Fridge/Fridge';
+import dummyData from './data/dummyData';
 
-type Recipe = {
-  id: number;
-  image: string;
-  title: string;
-  sourceUrl: string;
-  sourceName: string;
-  missedIngredientCount: number;
-  usedIngredientCount: number;
-};
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [offset, setOffset] = useState<number>(0);
+  const [total, setTotal] = useState<number | null>(null);
+
+  const [filters, setFilters] = useState<Filters>({
+    cuisines: [],
+    diets: [],
+    intolerances: [],
+    mealTypes: null,
+  });
 
   const getRecipes = async () => {
     const res = await axios.request({
@@ -24,23 +24,32 @@ function App() {
       params: {
         ingredients: ingredients.map((item) => item.name).join(','),
         offset: offset,
+        cuisine: filters.cuisines.map((item) => item.name).join(','),
       },
     });
-    console.log('offset', offset);
-    console.log('ingredients', ingredients);
-    if (offset === 0) setRecipes(res.data);
+
+    console.log(res);
+    if (offset === 0) setRecipes(res.data.results);
     else if (offset > 0)
       setRecipes((prev) => {
-        return [...prev, ...res.data];
+        return [...prev, ...res.data.results];
       });
+
+    setTotal(res.data.totalResults);
+    console.log(total);
   };
 
   useEffect(() => {
     getRecipes();
-  }, [ingredients, offset]);
+
+    //Use dummy data instead
+    /*if (offset === 0) setRecipes(dummyData.slice(0, 3));
+    else if (offset > 0)
+      setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);*/
+  }, [ingredients, filters, offset]);
 
   const loadMore = () => {
-    setOffset((prev) => prev + 6);
+    setOffset((prev) => prev + 3);
   };
 
   return (
@@ -48,7 +57,9 @@ function App() {
       <Fridge
         ingredients={ingredients}
         setIngredients={setIngredients}
-        setOffset={(value) => setOffset(value)}
+        setOffset={setOffset}
+        filters={filters}
+        setFilters={setFilters}
       />
       <button onClick={() => getRecipes()}>Search recipes</button>
       <div className={styles.recipes}>
@@ -71,13 +82,17 @@ function App() {
               </div>
             </div>
           ))}
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => loadMore()}
-        >
-          More recipes
-        </button>
+        {recipes.length + 3 <= total ? (
+          <button
+            type="button"
+            className={styles.moreButton}
+            onClick={() => loadMore()}
+          >
+            More recipes
+          </button>
+        ) : (
+          <>No more recipes to load.</>
+        )}
       </div>
     </>
   );
