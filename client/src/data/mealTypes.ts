@@ -13,6 +13,6 @@ const mealTypes = [
     "fingerfood",
     "snack",
     "drink"
-]
+].map((item, id) => ({ id, name: item }))
 
 export default mealTypes;

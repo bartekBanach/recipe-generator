@@ -11,7 +11,7 @@ const intolerances = [
     "Sulfite",
     "Tree Nut",
     "Wheat"
-  ]
+  ].map((item, id) => ({ id, name: item }))
 
 
 export default intolerances;

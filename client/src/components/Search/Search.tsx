@@ -69,7 +69,7 @@ const Search = ({
             />
             <select>
               {mealTypes.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item.id}>{item.name}</option>
               ))}
             </select>
           </div>

@@ -2,6 +2,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useState, useRef, useEffect, useId, KeyboardEvent } from 'react';
 import styles from './Multiselect.module.css';
+import useOutsideClick from '../../hooks/useOutsideClick';
 
 type MultiSelectProps = {
   options: Option[];
@@ -20,9 +21,11 @@ const MultiSelect = ({
   const [open, setOpen] = useState(false);
   const [highlighted, setHighlighted] = useState<number>(0);
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLElement>(null);
   const listboxRef = useRef<HTMLUListElement>(null);
   const id = useId();
+
+  useOutsideClick(containerRef, () => setOpen(false));
 
   useEffect(() => {
     if (open) setHighlighted(0);
