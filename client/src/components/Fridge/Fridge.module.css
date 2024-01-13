@@ -1,3 +1,21 @@
+.essentials {
+    display: flex;
+    gap: 1rem;
+}
+
+.essential {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: 1px solid var(--gray);
+
+}
+
+.checked {
+    background-color: var(--lightblue);
+}
+
 .ingredients {
     font-size: 1.2rem;
     padding: 0.5rem;
