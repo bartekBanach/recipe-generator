@@ -1,8 +1,9 @@
-import styles from './App.module.css';
+import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Fridge from './components/Fridge/Fridge';
 import dummyData from './data/dummyData';
+import Recipes from './components/Recipes/Recipes';
 
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
@@ -59,13 +60,6 @@ function App() {
     setTotal(60);*/
   }, [ingredients, filters, offset]);
 
-  const loadMore = () => {
-    setOffset((prev) => prev + 3);
-  };
-
-  if (loading) return <>Loading results...</>;
-  if (error) return <>Couldnt't load recipes due to network error</>;
-
   return (
     <>
       <Fridge
@@ -75,39 +69,14 @@ function App() {
         filters={filters}
         setFilters={setFilters}
       />
-      <button onClick={() => getRecipes()}>Search recipes</button>
-      <div className={styles.recipes}>
-        {recipes &&
-          recipes.map((recipe) => (
-            <div key={recipe.id} className={styles.recipe}>
-              <img src={recipe.image} />
-              <h3>{recipe.title}</h3>
-              <h3>id: {recipe.id}</h3>
-              <h4>
-                <a href={recipe.sourceUrl}>{recipe.sourceName}</a>
-              </h4>
-              <div className={styles.counts}>
-                <div className={styles.missed}>
-                  <b>missed: {recipe.missedIngredientCount}</b>
-                </div>
-                <div className={styles.used}>
-                  <b>used: {recipe.usedIngredientCount}</b>
-                </div>
-              </div>
-            </div>
-          ))}
-        {total && recipes.length + 3 <= total ? (
-          <button
-            type="button"
-            className={styles.moreButton}
-            onClick={() => loadMore()}
-          >
-            More recipes
-          </button>
-        ) : (
-          <>No more recipes to load.</>
-        )}
-      </div>
+      <Recipes
+        recipes={recipes}
+        loading={loading}
+        error={error}
+        total={total}
+        offset={offset}
+        setOffset={setOffset}
+      />
     </>
   );
 }

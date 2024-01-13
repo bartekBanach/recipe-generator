@@ -1,8 +1,8 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useState, useRef, useEffect, useId, KeyboardEvent } from 'react';
-import styles from './Multiselect.module.css';
 import useOutsideClick from '../../hooks/useOutsideClick';
+import styles from './MultiSelect.module.css';
 
 type MultiSelectProps = {
   options: Option[];
