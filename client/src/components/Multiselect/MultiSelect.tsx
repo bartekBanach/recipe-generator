@@ -21,7 +21,7 @@ const MultiSelect = ({
   const [open, setOpen] = useState(false);
   const [highlighted, setHighlighted] = useState<number>(0);
 
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const listboxRef = useRef<HTMLUListElement>(null);
   const id = useId();
 

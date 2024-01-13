@@ -72,7 +72,6 @@ function App() {
         loading={loading}
         error={error}
         total={total}
-        offset={offset}
         setOffset={setOffset}
         filters={filters}
         setFilters={setFilters}

@@ -10,7 +10,6 @@ type RecipesProps = {
   loading: boolean;
   error: boolean;
   total: number | null;
-  offset: number;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
@@ -21,7 +20,6 @@ const Recipes = ({
   loading,
   error,
   total,
-  offset,
   setOffset,
   filters,
   setFilters,

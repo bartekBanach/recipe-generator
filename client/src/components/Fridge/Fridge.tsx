@@ -9,17 +9,9 @@ type FridgeProps = {
   ingredients: Array<Ingredient>;
   setIngredients: React.Dispatch<React.SetStateAction<Ingredient[]>>;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
-  filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 };
 
-const Fridge = ({
-  ingredients,
-  setIngredients,
-  setOffset,
-  filters,
-  setFilters,
-}: FridgeProps) => {
+const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
   const handleDelete = (selected: Ingredient) => {
     setIngredients(() => {
       return ingredients.filter((item) => item !== selected);
@@ -56,8 +48,6 @@ const Fridge = ({
         selected={ingredients}
         setSelected={setIngredients}
         setOffset={setOffset}
-        filters={filters}
-        setFilters={setFilters}
       />
       <h3>Essential ingredients</h3>
 

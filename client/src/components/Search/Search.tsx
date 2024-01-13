@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import styles from './Search.module.css';
 import ingredients from '../../data/ingredients.ts';
 import { FaCirclePlus, FaCircleMinus } from 'react-icons/fa6';
+import useOutsideClick from '../../hooks/useOutsideClick.tsx';
 
 type SearchProps = {
   selected: Array<Ingredient>;
@@ -13,8 +14,10 @@ type SearchProps = {
 const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
   const [query, setQuery] = useState<string>('');
   const [highlighted, setHighlighted] = useState<number | null>(null);
+  const autocompleteRef = useRef<HTMLUListElement>(null);
+  const [open, setOpen] = useState(false);
 
-  const [open, setOpen] = useState<boolean>(false);
+  useOutsideClick(autocompleteRef, () => setOpen(false));
 
   const filteredIngredients = useMemo(() => {
     if (query === '') return [];
@@ -30,6 +33,7 @@ const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
     } else setSelected(() => selected.filter((item) => item !== value));
 
     setQuery('');
+    //setOpen(false);
     setOffset(0);
   };
 
@@ -40,9 +44,10 @@ const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => setOpen(true)}
           ></input>
-          {filteredIngredients.length !== 0 && (
-            <ul className={styles.autocomplete}>
+          {filteredIngredients.length !== 0 && open && (
+            <ul className={styles.autocomplete} ref={autocompleteRef}>
               {filteredIngredients.slice(0, 15).map((item) => (
                 <li
                   key={item.id}
