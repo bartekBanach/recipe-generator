@@ -1,4 +1,4 @@
-import './App.css';
+import styles from './App.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Fridge from './components/Fridge/Fridge';
@@ -51,17 +51,17 @@ function App() {
   };
 
   useEffect(() => {
-    getRecipes();
+    //getRecipes();
 
     //Use dummy data instead
-    /*if (offset === 0) setRecipes(dummyData.slice(0, 3));
+    if (offset === 0) setRecipes(dummyData.slice(0, 3));
     else if (offset > 0)
       setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);
-    setTotal(60);*/
+    setTotal(60);
   }, [ingredients, filters, offset]);
 
   return (
-    <>
+    <div className={styles.container}>
       <Fridge
         ingredients={ingredients}
         setIngredients={setIngredients}
@@ -77,7 +77,7 @@ function App() {
         offset={offset}
         setOffset={setOffset}
       />
-    </>
+    </div>
   );
 }
 

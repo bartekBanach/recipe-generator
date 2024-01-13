@@ -37,8 +37,12 @@ const Fridge = ({
         {ingredients.map((item) => (
           <li key={item.id} className={styles.ingredient}>
             {item.name}
-            <button type="button" onClick={() => handleDelete(item)}>
-              <IoMdCloseCircle />
+            <button
+              type="button"
+              onClick={() => handleDelete(item)}
+              className={styles.deleteBtn}
+            >
+              <IoMdCloseCircle className={styles.deleteIcn} />
             </button>
           </li>
         ))}

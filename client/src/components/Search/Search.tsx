@@ -53,48 +53,12 @@ const Search = ({
 
   return (
     <>
-      <form className={styles.form}>
+      <div className={styles.container}>
         <div className={styles.searchbar}>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           ></input>
-
-          <div className={styles.filters}>
-            <MultiSelect
-              options={cuisines}
-              value={filters.cuisines}
-              placeholder="cuisine"
-              onChange={(value) => changeFilterAttribute(value, 'cuisines')}
-            />
-            <MultiSelect
-              options={diets}
-              value={filters.diets}
-              placeholder="diets"
-              onChange={(value) => changeFilterAttribute(value, 'diets')}
-            />
-            <MultiSelect
-              options={intolerances}
-              value={filters.intolerances}
-              placeholder="intolerances"
-              onChange={(value) => changeFilterAttribute(value, 'intolerances')}
-            />
-
-            <select
-              value={filters.mealType}
-              onChange={(e) =>
-                setFilters((prev) => ({ ...prev, mealType: e.target.value }))
-              }
-            >
-              <option value="">meal type</option>
-              {mealTypes.map((item) => (
-                <option key={item.id} value={item.name}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {filteredIngredients.length !== 0 && (
             <ul className={styles.autocomplete}>
               {filteredIngredients.slice(0, 15).map((item) => (
@@ -117,7 +81,42 @@ const Search = ({
             </ul>
           )}
         </div>
-      </form>
+
+        <div className={styles.filters}>
+          <MultiSelect
+            options={cuisines}
+            value={filters.cuisines}
+            placeholder="cuisine"
+            onChange={(value) => changeFilterAttribute(value, 'cuisines')}
+          />
+          <MultiSelect
+            options={diets}
+            value={filters.diets}
+            placeholder="diets"
+            onChange={(value) => changeFilterAttribute(value, 'diets')}
+          />
+          <MultiSelect
+            options={intolerances}
+            value={filters.intolerances}
+            placeholder="intolerances"
+            onChange={(value) => changeFilterAttribute(value, 'intolerances')}
+          />
+
+          <select
+            value={filters.mealType}
+            onChange={(e) =>
+              setFilters((prev) => ({ ...prev, mealType: e.target.value }))
+            }
+          >
+            <option value="">meal type</option>
+            {mealTypes.map((item) => (
+              <option key={item.id} value={item.name}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </>
   );
 };
