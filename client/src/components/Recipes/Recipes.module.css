@@ -1,6 +1,23 @@
-
 .container {
-    border: 1px solid black;
+}
+
+.filters {
+    margin: 0 auto;
+    width:50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+}
+
+.filters select {
+    max-height: 100px;
+    overflow: auto;
+}
+
+.recipes {
     display: grid;
     justify-content: center;
     align-items: center;
@@ -31,3 +48,6 @@
 .moreButton {
     background-color: var(--gray100);
 }
+
+
+

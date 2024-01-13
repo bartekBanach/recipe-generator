@@ -12,18 +12,6 @@
 
 }
 
-.filters {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-
-}
-
-.filters select {
-    max-height: 100px;
-    overflow: auto;
-}
 
 .autocomplete {
     z-index: 1;

@@ -66,8 +66,6 @@ function App() {
         ingredients={ingredients}
         setIngredients={setIngredients}
         setOffset={setOffset}
-        filters={filters}
-        setFilters={setFilters}
       />
       <Recipes
         recipes={recipes}
@@ -76,6 +74,8 @@ function App() {
         total={total}
         offset={offset}
         setOffset={setOffset}
+        filters={filters}
+        setFilters={setFilters}
       />
     </div>
   );

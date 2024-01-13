@@ -20,7 +20,6 @@ const Fridge = ({
   filters,
   setFilters,
 }: FridgeProps) => {
-  //const [essentials, setEssentials] = useState<Ingredient[]>([]);
   const handleDelete = (selected: Ingredient) => {
     setIngredients(() => {
       return ingredients.filter((item) => item !== selected);
