@@ -11,6 +11,7 @@ type RecipesProps = {
   loading: boolean;
   error: boolean;
   total: number | null;
+  offset: number;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
@@ -21,23 +22,25 @@ const Recipes = ({
   loading,
   error,
   total,
+  offset,
   setOffset,
   filters,
   setFilters,
 }: RecipesProps) => {
   const changeFilterAttribute = (value: Option[], attribute: string) => {
     setFilters((prev) => ({ ...prev, [attribute]: value }));
+    setOffset(0);
   };
   const loadMore = () => {
     setOffset((prev) => prev + 3);
   };
 
-  if (loading && recipes.length === 0)
+  /*if (loading && offset === 0)
     return (
       <>
         <Spinner text="Loading results..." display="absolute" />
       </>
-    );
+    );*/
   if (error) return <>Couldnt't load recipes due to network error</>;
   return (
     <div className={styles.container}>
@@ -75,7 +78,12 @@ const Recipes = ({
           ))}
         </select>
       </div>
-      <div className={styles.recipes}>
+      {loading && offset === 0 && <Spinner text="" display="absolute" />}
+      <div
+        className={`${styles.recipes} ${
+          loading && offset === 0 && styles.loading
+        }`}
+      >
         {recipes &&
           recipes.map((recipe) => (
             <div key={recipe.id} className={styles.recipe}>
@@ -103,11 +111,11 @@ const Recipes = ({
             type="button"
             className={styles.moreButton}
             onClick={() => loadMore()}
-            disabled={loading}
+            disabled={loading && offset > 0}
           >
-            {loading ? 'Loading...' : 'More recipes'}
+            {loading && offset > 0 ? 'Loading...' : 'More recipes'}
           </button>
-          {loading && <Spinner size="small" />}
+          {loading && offset > 0 && <Spinner size="small" />}
         </div>
       ) : (
         <>No more recipes to load.</>
