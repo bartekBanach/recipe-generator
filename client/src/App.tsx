@@ -4,6 +4,7 @@ import axios from 'axios';
 import Fridge from './components/Fridge/Fridge';
 import dummyData from './data/dummyData';
 import Recipes from './components/Recipes/Recipes';
+import sleep from './utilities/sleep';
 
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
@@ -50,14 +51,27 @@ function App() {
     }
   };
 
+  const getDummyData = async () => {
+    setLoading(true);
+
+    try {
+      await sleep(1000);
+      if (offset === 0) setRecipes(dummyData.slice(0, 3));
+      else if (offset > 0)
+        setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);
+      setTotal(60);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     //getRecipes();
 
     //Use dummy data instead
-    if (offset === 0) setRecipes(dummyData.slice(0, 3));
-    else if (offset > 0)
-      setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);
-    setTotal(60);
+    getDummyData();
   }, [ingredients, filters, offset]);
 
   return (

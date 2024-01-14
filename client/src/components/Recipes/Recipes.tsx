@@ -4,6 +4,7 @@ import mealTypes from '../../data/mealTypes.ts';
 import intolerances from '../../data/intolerances.ts';
 import diets from '../../data/diets.ts';
 import MultiSelect from '../Multiselect/Multiselect.tsx';
+import Spinner from '../Spinner/Spinner.tsx';
 
 type RecipesProps = {
   recipes: Recipe[];
@@ -31,7 +32,12 @@ const Recipes = ({
     setOffset((prev) => prev + 3);
   };
 
-  if (loading) return <>Loading results...</>;
+  if (loading && recipes.length === 0)
+    return (
+      <>
+        <Spinner text="Loading results..." display="absolute" />
+      </>
+    );
   if (error) return <>Couldnt't load recipes due to network error</>;
   return (
     <div className={styles.container}>
@@ -92,13 +98,17 @@ const Recipes = ({
       </div>
 
       {total && recipes.length + 3 <= total ? (
-        <button
-          type="button"
-          className={styles.moreButton}
-          onClick={() => loadMore()}
-        >
-          More recipes
-        </button>
+        <div className={styles.moreResults}>
+          <button
+            type="button"
+            className={styles.moreButton}
+            onClick={() => loadMore()}
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'More recipes'}
+          </button>
+          {loading && <Spinner size="small" />}
+        </div>
       ) : (
         <>No more recipes to load.</>
       )}

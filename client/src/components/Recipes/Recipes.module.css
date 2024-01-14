@@ -45,8 +45,17 @@
     color: green;
 }
 
+.moreResults {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+}
+
 .moreButton {
     background-color: var(--gray100);
+    font-size: 1rem;
+    padding: 0.5em;
 }
 
 
