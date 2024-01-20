@@ -1,6 +1,18 @@
+.container {
+    grid-column: 1 / span 4;
+    border: 1px solid black;
+}
+
+.container h2 {
+    font-size: 2rem;
+    text-align: center;
+    background-color: var(--gray300);
+}
+
 .essentials {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .essential {
@@ -22,11 +34,12 @@
     display: flex;
     flex-direction: row;
     gap:1rem;
+    flex-wrap: wrap;
 }
 
 .ingredient {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 1rem;
     background-color: var(--gray100);
@@ -35,6 +48,15 @@
     padding: 0.5rem;
 }
 
+.ingredientHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.ingredientImg {
+    max-width: 100px;
+}
 
 .deleteBtn {
     border: none;

@@ -1,9 +1,11 @@
 import React from 'react';
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import styles from './Search.module.css';
 import ingredients from '../../data/ingredients.ts';
 import { FaCirclePlus, FaCircleMinus } from 'react-icons/fa6';
 import useOutsideClick from '../../hooks/useOutsideClick.tsx';
+import { FaSearch } from "react-icons/fa";
+
 
 type SearchProps = {
   selected: Array<Ingredient>;
@@ -42,10 +44,15 @@ const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
       <div className={styles.container}>
         <div className={styles.searchbar}>
           <input
+            className={styles.searchInput}
+            placeholder='Find ingredients...'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setOpen(true)}
-          ></input>
+          >
+          </input>
+          <FaSearch className={styles.searchIcon}/>
+
           {filteredIngredients.length !== 0 && open && (
             <ul className={styles.autocomplete} ref={autocompleteRef}>
               {filteredIngredients.slice(0, 15).map((item) => (

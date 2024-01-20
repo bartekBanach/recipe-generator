@@ -44,6 +44,7 @@ const Recipes = ({
   if (error) return <>Couldnt't load recipes due to network error</>;
   return (
     <div className={styles.container}>
+      <h2>Recipes</h2>
       <div className={styles.filters}>
         <MultiSelect
           options={cuisines}
@@ -87,7 +88,7 @@ const Recipes = ({
         {recipes &&
           recipes.map((recipe) => (
             <div key={recipe.id} className={styles.recipe}>
-              <img src={recipe.image} />
+              <img className={styles.recipeImg} src={recipe.image} />
               <h3>{recipe.title}</h3>
               <h3>id: {recipe.id}</h3>
               <h4>

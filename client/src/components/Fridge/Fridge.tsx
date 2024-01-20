@@ -3,7 +3,6 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import styles from './Fridge.module.css';
 import essentialsList from '../../data/ingredientsEssential';
 import ingredientsList from '../../data/ingredients';
-import { useState } from 'react';
 
 type FridgeProps = {
   ingredients: Array<Ingredient>;
@@ -41,9 +40,10 @@ const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
     const found = ingredients.find((i) => i.id === item.id);
     return found ? true : false;
   };
-  console.log('INGREDIENTS LIST', ingredients);
   return (
-    <>
+    <div className={styles.container}>
+      <h2>Ingredients</h2>
+
       <Search
         selected={ingredients}
         setSelected={setIngredients}
@@ -67,18 +67,24 @@ const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
       <ul className={styles.ingredients}>
         {ingredients.map((item) => (
           <li key={item.id} className={styles.ingredient}>
-            {item.name}
-            <button
-              type="button"
-              onClick={() => handleDelete(item)}
-              className={styles.deleteBtn}
-            >
-              <IoMdCloseCircle className={styles.deleteIcn} />
-            </button>
+            <div className={styles.ingredientHeader}>
+              {item.name}
+              <button
+                type="button"
+                onClick={() => handleDelete(item)}
+                className={styles.deleteBtn}
+              >
+                <IoMdCloseCircle className={styles.deleteIcn} />
+              </button>
+            </div>
+
+            <img className={styles.ingredientImg} 
+            src={`https://spoonacular.com/cdn/ingredients_100x100/${item.name.replace(' ', '-')}.jpg`}></img>
+
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

@@ -75,6 +75,9 @@ function App() {
   }, [ingredients, filters, offset]);
 
   return (
+    <>
+    <h1 className={styles.logo}>Recipe's generator</h1>
+    
     <div className={styles.container}>
       <Fridge
         ingredients={ingredients}
@@ -92,6 +95,8 @@ function App() {
         setFilters={setFilters}
       />
     </div>
+    </>
+
   );
 }
 

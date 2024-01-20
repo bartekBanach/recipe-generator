@@ -7,6 +7,7 @@ declare const styles: {
   readonly "moreButton": string;
   readonly "moreResults": string;
   readonly "recipe": string;
+  readonly "recipeImg": string;
   readonly "recipes": string;
   readonly "used": string;
 };
