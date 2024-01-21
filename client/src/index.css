@@ -1,0 +1,31 @@
+:root {
+    --white: #fafafa;
+    --gray100: #f5f5f5;
+    --gray300: #d4d4d4;
+    --gray: #737373;
+    --black: #0a0a0a;
+    --blue: #3b82f6;
+    --lightblue: #93c5fd;
+}
+
+@font-face {
+    font-family: 'RobotoMono';
+    src:
+      local('RobotoMono'),
+      url('./fonts/RobotoMono/RobotoMono-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'RobotoSerif';
+    src:
+      local('RobotoSerif'),
+      url('./fonts/RobotoSerif/RobotoSerif-VariableFont_GRAD,opsz,wdth,wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src:
+      local('Roboto'),
+      url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+

@@ -2,21 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto';
 }
 
 
-:root {
-  --white: #fafafa;
-  --gray100: #f5f5f5;
-  --gray300: #d4d4d4;
-  --gray: #737373;
-  --black: #0a0a0a;
-  --blue: #3b82f6;
-  --lightblue: #93c5fd;
-}
 
 .logo {
   text-align: center;
+  font-family: 'RobotoSerif';
 }
 .container {
   display: grid;
