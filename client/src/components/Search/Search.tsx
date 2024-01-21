@@ -42,39 +42,41 @@ const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
   return (
     <>
       <div className={styles.container}>
+
         <div className={styles.searchbar}>
           <input
-            className={styles.searchInput}
+            type='search'
             placeholder='Find ingredients...'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setOpen(true)}
           >
           </input>
-          <FaSearch className={styles.searchIcon}/>
-
+          <FaSearch/>
           {filteredIngredients.length !== 0 && open && (
-            <ul className={styles.autocomplete} ref={autocompleteRef}>
-              {filteredIngredients.slice(0, 15).map((item) => (
-                <li
-                  key={item.id}
-                  className={`${styles.option} ${
-                    item.id === highlighted && styles.highlighted
-                  }`}
-                  onClick={() => handleClick(item)}
-                  onMouseEnter={() => setHighlighted(item.id)}
-                >
-                  {item.name}
-                  {selected.includes(item) ? (
-                    <FaCircleMinus />
-                  ) : (
-                    <FaCirclePlus />
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
+        <ul className={styles.autocomplete} ref={autocompleteRef}>
+          {filteredIngredients.slice(0, 15).map((item) => (
+            <li
+              key={item.id}
+              className={`${styles.option} ${
+                item.id === highlighted && styles.highlighted
+              }`}
+              onClick={() => handleClick(item)}
+              onMouseEnter={() => setHighlighted(item.id)}
+            >
+              {item.name}
+              {selected.includes(item) ? (
+                <FaCircleMinus />
+              ) : (
+                <FaCirclePlus />
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
         </div>
+
+
       </div>
     </>
   );
