@@ -45,6 +45,14 @@ const Recipes = ({
   return (
     <div className={styles.container}>
       <h2>Recipes</h2>
+
+      <div className={styles.content}>
+
+
+
+
+
+
       <div className={styles.filters}>
         <MultiSelect
           options={cuisines}
@@ -78,6 +86,7 @@ const Recipes = ({
             </option>
           ))}
         </select>
+        
       </div>
       {loading && offset === 0 && <Spinner text="" display="absolute" />}
       <div
@@ -104,23 +113,29 @@ const Recipes = ({
               </div>
             </div>
           ))}
+      {total && recipes.length + 3 <= total ? (
+                <div className={styles.moreResults}>
+                  <button
+                    type="button"
+                    className={styles.moreButton}
+                    onClick={() => loadMore()}
+                    disabled={loading && offset > 0}
+                  >
+                    {loading && offset > 0 ? 'Loading...' : 'More recipes'}
+                  </button>
+                  {loading && offset > 0 && <Spinner size="small" />}
+                </div>
+              ) : (
+                <>{!loading && 'No more recipes to load.'}</>
+      )}
+
+          
       </div>
 
-      {total && recipes.length + 3 <= total ? (
-        <div className={styles.moreResults}>
-          <button
-            type="button"
-            className={styles.moreButton}
-            onClick={() => loadMore()}
-            disabled={loading && offset > 0}
-          >
-            {loading && offset > 0 ? 'Loading...' : 'More recipes'}
-          </button>
-          {loading && offset > 0 && <Spinner size="small" />}
-        </div>
-      ) : (
-        <>No more recipes to load.</>
-      )}
+
+
+
+    </div>
     </div>
   );
 };

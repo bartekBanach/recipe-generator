@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "container": string;
+  readonly "content": string;
   readonly "counts": string;
   readonly "filters": string;
   readonly "loading": string;

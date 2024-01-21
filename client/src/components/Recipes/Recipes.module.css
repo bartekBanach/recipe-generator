@@ -1,7 +1,9 @@
 .container {
     grid-column: 5 / span 8;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
     border: 1px solid black;
-    overflow-y: scroll;
 }
 
 .container h2 {
@@ -10,17 +12,23 @@
     background-color: var(--gray300);
 }
 
+.content {
+    overflow-y: scroll;
+    padding-top: 1rem;
+
+}
+
 .loading {
     opacity: 0.50;
 }
 
 .filters {
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
-    margin-bottom: 2rem;
 
 }
 
@@ -42,6 +50,7 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
+    padding-top: 1rem;
 }
 .recipe h3 {
     text-align: center;
@@ -50,7 +59,11 @@
 
 
 .recipeImg {
+    width:200px;
+    height: 200px;
     max-width: 200px;
+    width: 200px;
+    object-fit: cover;
 }
 
 

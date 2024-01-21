@@ -43,14 +43,12 @@ const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
   return (
     <div className={styles.container}>
       <h2>Ingredients</h2>
-
       <Search
         selected={ingredients}
         setSelected={setIngredients}
         setOffset={setOffset}
       />
       <h3>Essential ingredients</h3>
-
       <div className={styles.essentials}>
         {essentialsList.map((item) => (
           <button
@@ -64,8 +62,10 @@ const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
         ))}
       </div>
 
-      <ul className={styles.ingredients}>
-        {ingredients.map((item) => (
+      <div className={styles.ingredients}>
+        <h3>My ingredients</h3>
+
+        {ingredients.length > 0 ? <ul>{ingredients.map((item) => (
           <li key={item.id} className={styles.ingredient}>
             <div className={styles.ingredientHeader}>
               {item.name}
@@ -78,12 +78,14 @@ const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
               </button>
             </div>
 
-            <img className={styles.ingredientImg} 
-            src={`https://spoonacular.com/cdn/ingredients_100x100/${item.name.replace(' ', '-')}.jpg`}></img>
+            {/*<img className={styles.ingredientImg} 
+            src={`https://spoonacular.com/cdn/ingredients_100x100/${item.name.replace(' ', '-')}.jpg`} 
+        />*/}
+
 
           </li>
-        ))}
-      </ul>
+        ))}</ul> : <p>Ingredients list is empty.</p>}
+      </div>
     </div>
   );
 };
