@@ -5,12 +5,11 @@
   font-family: 'Roboto';
 }
 
-
-
 .logo {
   text-align: center;
   font-family: 'RobotoSerif';
 }
+
 .container {
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
@@ -20,4 +19,38 @@
   padding: 2rem;
   margin: 0 auto;
 }
+
+
+.mobileControlls {
+  background: var(--white);
+  padding: 1rem 2rem;
+  position: fixed;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+}
+
+.control {
+  background-color: var(--gray300);
+  padding: 0.5rem;
+}
+
+@media (max-width: 375px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    height:auto;
+    padding: 2rem 0;
+
+  }
+
+  .mobileControlls {
+    display: flex;
+  }
+}
+
 

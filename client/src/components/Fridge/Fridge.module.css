@@ -6,6 +6,8 @@
     gap: 1rem;
 }
 
+
+
 .container h2 {
     font-size: 2rem;
     text-align: center;
@@ -99,5 +101,14 @@
     display: block;
     margin: auto;
 }
+
+@media (max-width: 375px) {
+
+    .container.mobileHidden {
+        display: none;
+    }
+
+
+  }
 
 

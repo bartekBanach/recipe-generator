@@ -97,4 +97,22 @@
 }
 
 
+@media (max-width: 375px) {
+
+    .container {
+    }
+
+    .container.mobileHidden {
+        display: none;
+    }
+    .filters {
+        flex-wrap: wrap;
+    }
+    .recipes {
+        display: flex;
+        flex-direction: column;
+    }
+
+  }
+
 

@@ -5,6 +5,7 @@ declare const styles: {
   readonly "filters": string;
   readonly "loading": string;
   readonly "missed": string;
+  readonly "mobileHidden": string;
   readonly "moreButton": string;
   readonly "moreResults": string;
   readonly "recipe": string;

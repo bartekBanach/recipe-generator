@@ -21,6 +21,8 @@ function App() {
     mealType: '',
   });
 
+  const [display, setDisplay] = useState('ingredients')
+
   const getRecipes = async () => {
     setLoading(true);
     try {
@@ -74,6 +76,17 @@ function App() {
     getDummyData();
   }, [ingredients, filters, offset]);
 
+  const handleChange = () => {
+    setDisplay((prev) => {
+      if (prev==='ingredients') {
+        return 'recipes'
+      } else {
+        return 'ingredients'
+      }})
+  }
+
+  console.log('dipslay', display);
+
   return (
     <>
     <h1 className={styles.logo}>Recipe's generator</h1>
@@ -83,6 +96,7 @@ function App() {
         ingredients={ingredients}
         setIngredients={setIngredients}
         setOffset={setOffset}
+        hidden={display === 'recipes'}
       />
       <Recipes
         recipes={recipes}
@@ -93,7 +107,23 @@ function App() {
         setOffset={setOffset}
         filters={filters}
         setFilters={setFilters}
+        hidden={display === 'ingredients'}
       />
+    </div>
+    <div className={styles.mobileControlls}>
+      <div className={styles.control}>
+        <input name='controlls' type='radio' id='ingredients' checked={display==='ingredients'}
+        onChange={handleChange}
+        />
+        <label htmlFor="ingredients">Ingredients</label>
+      </div>
+
+      <div className={styles.control}>
+        <input name='controlls' type='radio' checked={display==='recipes'} onChange={handleChange}/>
+        <label htmlFor="recipes">Recipes</label>
+      </div>
+
+
     </div>
     </>
 

@@ -8,9 +8,10 @@ type FridgeProps = {
   ingredients: Array<Ingredient>;
   setIngredients: React.Dispatch<React.SetStateAction<Ingredient[]>>;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
+  hidden: boolean;
 };
 
-const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
+const Fridge = ({ ingredients, setIngredients, setOffset, hidden }: FridgeProps) => {
   const handleDelete = (selected: Ingredient) => {
     setIngredients(() => {
       return ingredients.filter((item) => item !== selected);
@@ -41,7 +42,7 @@ const Fridge = ({ ingredients, setIngredients, setOffset }: FridgeProps) => {
     return found ? true : false;
   };
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Ingredients</h2>
       <Search
         selected={ingredients}

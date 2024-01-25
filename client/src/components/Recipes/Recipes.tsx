@@ -15,6 +15,7 @@ type RecipesProps = {
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  hidden: boolean;
 };
 
 const Recipes = ({
@@ -26,6 +27,7 @@ const Recipes = ({
   setOffset,
   filters,
   setFilters,
+  hidden,
 }: RecipesProps) => {
   const changeFilterAttribute = (value: Option[], attribute: string) => {
     setFilters((prev) => ({ ...prev, [attribute]: value }));
@@ -35,6 +37,7 @@ const Recipes = ({
     setOffset((prev) => prev + 3);
   };
 
+
   /*if (loading && offset === 0)
     return (
       <>
@@ -43,16 +46,10 @@ const Recipes = ({
     );*/
   if (error) return <>Couldnt't load recipes due to network error</>;
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Recipes</h2>
 
       <div className={styles.content}>
-
-
-
-
-
-
       <div className={styles.filters}>
         <MultiSelect
           options={cuisines}
