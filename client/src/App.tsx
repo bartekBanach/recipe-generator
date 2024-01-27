@@ -5,6 +5,7 @@ import Fridge from './components/Fridge/Fridge';
 import dummyData from './data/dummyData';
 import Recipes from './components/Recipes/Recipes';
 import sleep from './utilities/sleep';
+import { IoRestaurant } from 'react-icons/io5';
 
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
@@ -21,7 +22,7 @@ function App() {
     mealType: '',
   });
 
-  const [display, setDisplay] = useState('ingredients')
+  const [display, setDisplay] = useState('ingredients');
 
   const getRecipes = async () => {
     setLoading(true);
@@ -78,55 +79,64 @@ function App() {
 
   const handleChange = () => {
     setDisplay((prev) => {
-      if (prev==='ingredients') {
-        return 'recipes'
+      if (prev === 'ingredients') {
+        return 'recipes';
       } else {
-        return 'ingredients'
-      }})
-  }
+        return 'ingredients';
+      }
+    });
+  };
 
   console.log('dipslay', display);
 
   return (
-    <>
-    <h1 className={styles.logo}>Recipe's generator</h1>
-    
     <div className={styles.container}>
-      <Fridge
-        ingredients={ingredients}
-        setIngredients={setIngredients}
-        setOffset={setOffset}
-        hidden={display === 'recipes'}
-      />
-      <Recipes
-        recipes={recipes}
-        loading={loading}
-        error={error}
-        total={total}
-        offset={offset}
-        setOffset={setOffset}
-        filters={filters}
-        setFilters={setFilters}
-        hidden={display === 'ingredients'}
-      />
-    </div>
-    <div className={styles.mobileControlls}>
-      <div className={styles.control}>
-        <input name='controlls' type='radio' id='ingredients' checked={display==='ingredients'}
-        onChange={handleChange}
+      <h1 className={styles.logo}>
+        Recipe's generator <IoRestaurant />{' '}
+      </h1>
+
+      <div className={styles.gridWrapper}>
+        <Fridge
+          ingredients={ingredients}
+          setIngredients={setIngredients}
+          setOffset={setOffset}
+          hidden={display === 'recipes'}
         />
-        <label htmlFor="ingredients">Ingredients</label>
+        <Recipes
+          recipes={recipes}
+          loading={loading}
+          error={error}
+          total={total}
+          offset={offset}
+          setOffset={setOffset}
+          filters={filters}
+          setFilters={setFilters}
+          hidden={display === 'ingredients'}
+        />
       </div>
+      <div className={styles.mobileControlls}>
+        <div className={styles.control}>
+          <input
+            name="controlls"
+            type="radio"
+            id="ingredients"
+            checked={display === 'ingredients'}
+            onChange={handleChange}
+          />
+          <label htmlFor="ingredients">Ingredients</label>
+        </div>
 
-      <div className={styles.control}>
-        <input name='controlls' type='radio' checked={display==='recipes'} onChange={handleChange}/>
-        <label htmlFor="recipes">Recipes</label>
+        <div className={styles.control}>
+          <input
+            name="controlls"
+            type="radio"
+            checked={display === 'recipes'}
+            onChange={handleChange}
+          />
+          <label htmlFor="recipes">Recipes</label>
+        </div>
       </div>
-
-
     </div>
-    </>
-
   );
 }
 

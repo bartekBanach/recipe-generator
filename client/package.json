@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"tcm --watch .\"",
     "generate-types": "tcm --watch .",
     "check:up-to-date-types": "tcm --listDifferent .",
     "build": "tsc && vite build",

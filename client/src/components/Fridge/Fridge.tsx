@@ -3,6 +3,7 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import styles from './Fridge.module.css';
 import essentialsList from '../../data/ingredientsEssential';
 import ingredientsList from '../../data/ingredients';
+import { FaCheck } from 'react-icons/fa6';
 
 type FridgeProps = {
   ingredients: Array<Ingredient>;
@@ -11,7 +12,12 @@ type FridgeProps = {
   hidden: boolean;
 };
 
-const Fridge = ({ ingredients, setIngredients, setOffset, hidden }: FridgeProps) => {
+const Fridge = ({
+  ingredients,
+  setIngredients,
+  setOffset,
+  hidden,
+}: FridgeProps) => {
   const handleDelete = (selected: Ingredient) => {
     setIngredients(() => {
       return ingredients.filter((item) => item !== selected);
@@ -37,13 +43,16 @@ const Fridge = ({ ingredients, setIngredients, setOffset, hidden }: FridgeProps)
     }*/
   };
 
-  const check = (item: Ingredient) => {
+  const isChecked = (item: Ingredient) => {
     const found = ingredients.find((i) => i.id === item.id);
     return found ? true : false;
   };
   return (
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Ingredients</h2>
+      <p className={styles.instructions}>
+        Enter ingredients you have to generate possible recipes.
+      </p>
       <Search
         selected={ingredients}
         setSelected={setIngredients}
@@ -54,11 +63,14 @@ const Fridge = ({ ingredients, setIngredients, setOffset, hidden }: FridgeProps)
         {essentialsList.map((item) => (
           <button
             key={item.id}
-            className={`${styles.essential} ${check(item) && styles.checked}`}
+            className={`${styles.essential} ${
+              isChecked(item) && styles.checked
+            }`}
             name={item.name}
             onClick={() => handleChange(item)}
           >
             {item.name}
+            {isChecked(item) && <FaCheck />}
           </button>
         ))}
       </div>
@@ -66,26 +78,30 @@ const Fridge = ({ ingredients, setIngredients, setOffset, hidden }: FridgeProps)
       <div className={styles.ingredients}>
         <h3>My ingredients</h3>
 
-        {ingredients.length > 0 ? <ul>{ingredients.map((item) => (
-          <li key={item.id} className={styles.ingredient}>
-            <div className={styles.ingredientHeader}>
-              {item.name}
-              <button
-                type="button"
-                onClick={() => handleDelete(item)}
-                className={styles.deleteBtn}
-              >
-                <IoMdCloseCircle className={styles.deleteIcn} />
-              </button>
-            </div>
+        {ingredients.length > 0 ? (
+          <ul>
+            {ingredients.map((item) => (
+              <li key={item.id} className={styles.ingredient}>
+                <div className={styles.ingredientHeader}>
+                  {item.name}
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(item)}
+                    className={styles.deleteBtn}
+                  >
+                    <IoMdCloseCircle className={styles.deleteIcn} />
+                  </button>
+                </div>
 
-            {/*<img className={styles.ingredientImg} 
+                {/*<img className={styles.ingredientImg} 
             src={`https://spoonacular.com/cdn/ingredients_100x100/${item.name.replace(' ', '-')}.jpg`} 
         />*/}
-
-
-          </li>
-        ))}</ul> : <p>Ingredients list is empty.</p>}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Ingredients list is empty.</p>
+        )}
       </div>
     </div>
   );

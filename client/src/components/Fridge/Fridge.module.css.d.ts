@@ -9,6 +9,7 @@ declare const styles: {
   readonly "ingredientHeader": string;
   readonly "ingredientImg": string;
   readonly "ingredients": string;
+  readonly "instructions": string;
   readonly "mobileHidden": string;
 };
 export = styles;
