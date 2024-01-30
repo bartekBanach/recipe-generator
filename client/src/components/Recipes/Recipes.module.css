@@ -7,6 +7,7 @@
     background-color: var(--gray200);
 }
 
+
 .container h2 {
     font-size: 1.3rem;
     text-align: center;
@@ -56,6 +57,12 @@
     gap: 1.5rem;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 2rem;
+}
+
+
+.observerTarget {
+    height: 0; 
+    background-color: red;
 }
 
 .recipe {

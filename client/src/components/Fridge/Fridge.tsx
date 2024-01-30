@@ -35,6 +35,7 @@ const Fridge = ({
         setIngredients((prev) => [...prev, found]);
       }
     }
+    setOffset(0);
 
     /*if (ingredients.includes(item)) {
       setIngredients(ingredients.filter((i) => i.id !== item.id));

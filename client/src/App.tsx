@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Fridge from './components/Fridge/Fridge';
 import dummyData from './data/dummyData';
@@ -14,6 +14,7 @@ function App() {
   const [error, setError] = useState(false);
   const [offset, setOffset] = useState<number>(0);
   const [total, setTotal] = useState<number | null>(null);
+  const [hasMore, setHasMore] = useState(true);
 
   const [filters, setFilters] = useState<Filters>({
     cuisines: [],
@@ -46,6 +47,7 @@ function App() {
           return [...prev, ...res.data.results];
         });
       setTotal(res.data.totalResults);
+      if (res.data.results >= res.data.totalResults) setHasMore(false);
     } catch (err) {
       console.log(error);
       setError(true);
@@ -55,14 +57,16 @@ function App() {
   };
 
   const getDummyData = async () => {
+    if (loading) return;
     setLoading(true);
 
     try {
       await sleep(1000);
-      if (offset === 0) setRecipes(dummyData.slice(0, 3));
+      if (offset === 0) setRecipes(dummyData.slice(0, 9));
       else if (offset > 0)
         setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);
-      setTotal(60);
+      setTotal(18);
+      if (recipes.length + 3 >= 18) setHasMore(false);
     } catch (err) {
       console.log(err);
     } finally {
@@ -87,8 +91,6 @@ function App() {
     });
   };
 
-  console.log('dipslay', display);
-
   return (
     <div className={styles.container}>
       <h1 className={styles.logo}>
@@ -112,6 +114,8 @@ function App() {
           filters={filters}
           setFilters={setFilters}
           hidden={display === 'ingredients'}
+          refetch={getDummyData}
+          hasMore={hasMore}
         />
       </div>
       <div className={styles.mobileControlls}>

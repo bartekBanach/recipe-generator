@@ -6,6 +6,7 @@ import diets from '../../data/diets.ts';
 import MultiSelect from '../Multiselect/Multiselect.tsx';
 import Spinner from '../Spinner/Spinner.tsx';
 import { FiExternalLink } from 'react-icons/fi';
+import { useRef, useEffect } from 'react';
 
 type RecipesProps = {
   recipes: Recipe[];
@@ -17,6 +18,8 @@ type RecipesProps = {
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
   hidden: boolean;
+  refetch: any;
+  hasMore: boolean;
 };
 
 const Recipes = ({
@@ -29,21 +32,46 @@ const Recipes = ({
   filters,
   setFilters,
   hidden,
+  refetch,
+  hasMore,
 }: RecipesProps) => {
+  const observerTarget = useRef(null);
+
+  const firstCallImminent = useRef(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (!firstCallImminent.current && hasMore) {
+          fetchMore();
+        } else {
+          firstCallImminent.current = false;
+        }
+      }
+    });
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
+        firstCallImminent.current = true;
+      }
+    };
+  }, [hasMore, firstCallImminent, observerTarget]);
+
   const changeFilterAttribute = (value: Option[], attribute: string) => {
     setFilters((prev) => ({ ...prev, [attribute]: value }));
     setOffset(0);
   };
-  const loadMore = () => {
-    setOffset((prev) => prev + 3);
+  const fetchMore = () => {
+    setOffset((prev) => {
+      return prev + 3;
+    });
   };
 
-  /*if (loading && offset === 0)
-    return (
-      <>
-        <Spinner text="Loading results..." display="absolute" />
-      </>
-    );*/
   if (error) return <>Couldnt't load recipes due to network error</>;
   return (
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
@@ -90,17 +118,14 @@ const Recipes = ({
             loading && offset === 0 && styles.loading
           }`}
         >
-          {recipes &&
-            recipes.map((recipe) => (
+          {recipes?.map((recipe) => {
+            return (
               <div key={recipe.id} className={styles.recipe}>
                 <img className={styles.recipeImg} src={recipe.image} />
                 <a href={recipe.sourceUrl} className={styles.recipeName}>
                   {recipe.title} <FiExternalLink />
                 </a>
-                {/*<h3>id: {recipe.id}</h3>*/}
-                {/*<h4>
-                <a href={recipe.sourceUrl}>{recipe.sourceName}</a>
-          </h4>*/}
+
                 <div className={styles.counts}>
                   <div className={styles.missed}>
                     <b>missed: {recipe.missedIngredientCount}</b>
@@ -110,13 +135,15 @@ const Recipes = ({
                   </div>
                 </div>
               </div>
-            ))}
-          {total && recipes.length + 3 <= total ? (
+            );
+          })}
+          <span className={styles.observerTarget} ref={observerTarget}></span>
+          {hasMore && recipes.length > 0 ? (
             <div className={styles.moreResults}>
               <button
                 type="button"
                 className={styles.moreButton}
-                onClick={() => loadMore()}
+                onClick={() => fetchMore()}
                 disabled={loading && offset > 0}
               >
                 {loading && offset > 0 ? 'Loading...' : 'More recipes'}
