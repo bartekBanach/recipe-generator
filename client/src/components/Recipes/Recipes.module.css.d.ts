@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "communicat": string;
   readonly "container": string;
   readonly "content": string;
   readonly "counts": string;
@@ -10,6 +11,7 @@ declare const styles: {
   readonly "moreResults": string;
   readonly "observerTarget": string;
   readonly "recipe": string;
+  readonly "recipeContent": string;
   readonly "recipeImg": string;
   readonly "recipeName": string;
   readonly "recipes": string;

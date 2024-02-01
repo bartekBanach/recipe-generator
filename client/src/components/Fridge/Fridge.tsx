@@ -4,6 +4,7 @@ import styles from './Fridge.module.css';
 import essentialsList from '../../data/ingredientsEssential';
 import ingredientsList from '../../data/ingredients';
 import { FaCheck } from 'react-icons/fa6';
+import { IoMdListBox } from 'react-icons/io';
 
 type FridgeProps = {
   ingredients: Array<Ingredient>;
@@ -77,7 +78,9 @@ const Fridge = ({
       </div>
 
       <div className={styles.ingredients}>
-        <h3>My ingredients</h3>
+        <h3>
+          My ingredients <IoMdListBox />
+        </h3>
 
         {ingredients.length > 0 ? (
           <ul>

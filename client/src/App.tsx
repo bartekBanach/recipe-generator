@@ -94,7 +94,7 @@ function App() {
   return (
     <div className={styles.container}>
       <h1 className={styles.logo}>
-        Recipe's generator <IoRestaurant />{' '}
+        Recipe's Generator <IoRestaurant />{' '}
       </h1>
 
       <div className={styles.gridWrapper}>
@@ -117,27 +117,27 @@ function App() {
           refetch={getDummyData}
           hasMore={hasMore}
         />
-      </div>
-      <div className={styles.mobileControlls}>
-        <div className={styles.control}>
-          <input
-            name="controlls"
-            type="radio"
-            id="ingredients"
-            checked={display === 'ingredients'}
-            onChange={handleChange}
-          />
-          <label htmlFor="ingredients">Ingredients</label>
-        </div>
+        <div className={styles.mobileControlls}>
+          <div className={styles.control}>
+            <input
+              name="controlls"
+              type="radio"
+              id="ingredients"
+              checked={display === 'ingredients'}
+              onChange={handleChange}
+            />
+            <label htmlFor="ingredients">Ingredients</label>
+          </div>
 
-        <div className={styles.control}>
-          <input
-            name="controlls"
-            type="radio"
-            checked={display === 'recipes'}
-            onChange={handleChange}
-          />
-          <label htmlFor="recipes">Recipes</label>
+          <div className={styles.control}>
+            <input
+              name="controlls"
+              type="radio"
+              checked={display === 'recipes'}
+              onChange={handleChange}
+            />
+            <label htmlFor="recipes">Recipes</label>
+          </div>
         </div>
       </div>
     </div>

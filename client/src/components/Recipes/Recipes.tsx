@@ -121,17 +121,21 @@ const Recipes = ({
           {recipes?.map((recipe) => {
             return (
               <div key={recipe.id} className={styles.recipe}>
-                <img className={styles.recipeImg} src={recipe.image} />
-                <a href={recipe.sourceUrl} className={styles.recipeName}>
-                  {recipe.title} <FiExternalLink />
-                </a>
+                <div className={styles.recipeImg}>
+                  <img src={recipe.image} />
+                </div>
 
-                <div className={styles.counts}>
-                  <div className={styles.missed}>
-                    <b>missed: {recipe.missedIngredientCount}</b>
-                  </div>
-                  <div className={styles.used}>
-                    <b>used: {recipe.usedIngredientCount}</b>
+                <div className={styles.recipeContent}>
+                  <a href={recipe.sourceUrl} className={styles.recipeName}>
+                    {recipe.title} <FiExternalLink />
+                  </a>
+                  <div className={styles.counts}>
+                    <div className={styles.missed}>
+                      <b>missed: {recipe.missedIngredientCount}</b>
+                    </div>
+                    <div className={styles.used}>
+                      <b>used: {recipe.usedIngredientCount}</b>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -151,7 +155,9 @@ const Recipes = ({
               {loading && offset > 0 && <Spinner size="small" />}
             </div>
           ) : (
-            <>{!loading && 'No more recipes to load.'}</>
+            <p className={styles.communicat}>
+              {!loading && 'No more recipes to load.'}
+            </p>
           )}
         </div>
       </div>

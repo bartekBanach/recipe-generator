@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: 1.5rem;
     background-color: var(--gray200);
-    max-height: 100%;
+    max-height: 100vh;
     overflow-y: scroll;
 
 }
@@ -68,7 +68,7 @@
     flex-direction: column;
     font-size: 1rem;
     padding: 1.3rem;
-    background-color: beige;
+    background-color: #FFF9C5;
     gap: 1rem;
     margin: 0 2rem;
     border: 1px solid var(--gray300);
@@ -76,8 +76,14 @@
     overflow-y: scroll;
     margin-bottom: 2rem;
 
+}
 
-
+.ingredients h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3em;
 }
 
 .ingredients p {
@@ -136,9 +142,17 @@
 
 @media (max-width: 480px)  {
 
+
+
     .container.mobileHidden {
         display: none;
     }
+
+    .container {
+        max-height: max-content;
+
+    }
+
 
 
   }
