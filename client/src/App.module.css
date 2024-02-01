@@ -51,7 +51,7 @@
 .mobileControlls {
   grid-column: 1 / span 12;
   background: var(--white);
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   position: sticky;
   bottom: 0;
   display: none;
@@ -63,10 +63,27 @@
 
 }
 
-.control {
-  background-color: var(--gray300);
-  padding: 0.5rem;
+.control input {
+  opacity: 0;
+  width: 0;
+  position: fixed;
 }
+
+.control label {
+  padding: 0.7rem;
+  background-color: var(--gray300);
+  font-size: 1.1rem;
+}
+.control input:checked + label {
+  color: var(--white);
+  background-color: orange;
+}
+
+
+
+
+
+
 
 @media (max-width: 480px) {
 

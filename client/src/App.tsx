@@ -132,10 +132,12 @@ function App() {
           <div className={styles.control}>
             <input
               name="controlls"
+              id="recipes"
               type="radio"
               checked={display === 'recipes'}
               onChange={handleChange}
             />
+
             <label htmlFor="recipes">Recipes</label>
           </div>
         </div>
