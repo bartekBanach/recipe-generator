@@ -21,7 +21,7 @@
   width: fit-content;
   color: var(--white);
   font-size: 4rem;
-  filter: drop-shadow(0.2rem 0.3rem 0.3rem var(--gray));
+  filter: drop-shadow(0.05em 0.05em 0.05em var(--gray));
   gap: 0.3em;
 }
 

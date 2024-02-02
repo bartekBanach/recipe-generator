@@ -12,13 +12,11 @@ type RecipesProps = {
   recipes: Recipe[];
   loading: boolean;
   error: boolean;
-  total: number | null;
   offset: number;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
   hidden: boolean;
-  refetch: any;
   hasMore: boolean;
 };
 
@@ -26,13 +24,11 @@ const Recipes = ({
   recipes,
   loading,
   error,
-  total,
   offset,
   setOffset,
   filters,
   setFilters,
   hidden,
-  refetch,
   hasMore,
 }: RecipesProps) => {
   const observerTarget = useRef(null);

@@ -60,7 +60,8 @@
 }
 
 .checked {
-    background-color: var(--lightblue);
+    background-color: #F17F29;
+    color: var(--white);
 }
 
 .ingredients {

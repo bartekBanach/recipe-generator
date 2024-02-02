@@ -1,20 +1,13 @@
 import styles from './App.module.css';
-import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import Fridge from './components/Fridge/Fridge';
-import dummyData from './data/dummyData';
 import Recipes from './components/Recipes/Recipes';
-import sleep from './utilities/sleep';
 import { IoRestaurant } from 'react-icons/io5';
+import useFetchRecipes from './hooks/useFetchRecipes';
 
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [offset, setOffset] = useState<number>(0);
-  const [total, setTotal] = useState<number | null>(null);
-  const [hasMore, setHasMore] = useState(true);
 
   const [filters, setFilters] = useState<Filters>({
     cuisines: [],
@@ -22,64 +15,18 @@ function App() {
     intolerances: [],
     mealType: '',
   });
+  const {
+    results: recipes,
+    loading,
+    error,
+    hasMore,
+  } = useFetchRecipes({
+    filters,
+    ingredients,
+    offset,
+  });
 
   const [display, setDisplay] = useState('ingredients');
-
-  const getRecipes = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.request({
-        method: 'GET',
-        url: 'http://localhost:4000/recipes',
-        params: {
-          ingredients: ingredients.map((item) => item.name).join(','),
-          offset: offset,
-          cuisine: filters.cuisines.map((item) => item.name).join(','),
-          diet: filters.diets.map((item) => item.name).join(','),
-          intolerances: filters.intolerances.map((item) => item.name).join(','),
-          type: filters.mealType,
-        },
-      });
-
-      if (offset === 0) setRecipes(res.data.results);
-      else if (offset > 0)
-        setRecipes((prev) => {
-          return [...prev, ...res.data.results];
-        });
-      setTotal(res.data.totalResults);
-      if (res.data.results >= res.data.totalResults) setHasMore(false);
-    } catch (err) {
-      console.log(error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getDummyData = async () => {
-    if (loading) return;
-    setLoading(true);
-
-    try {
-      await sleep(1000);
-      if (offset === 0) setRecipes(dummyData.slice(0, 9));
-      else if (offset > 0)
-        setRecipes((prev) => [...prev, ...dummyData.slice(offset, offset + 3)]);
-      setTotal(18);
-      if (recipes.length + 3 >= 18) setHasMore(false);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    //getRecipes();
-
-    //Use dummy data instead
-    getDummyData();
-  }, [ingredients, filters, offset]);
 
   const handleChange = () => {
     setDisplay((prev) => {
@@ -108,13 +55,11 @@ function App() {
           recipes={recipes}
           loading={loading}
           error={error}
-          total={total}
           offset={offset}
           setOffset={setOffset}
           filters={filters}
           setFilters={setFilters}
           hidden={display === 'ingredients'}
-          refetch={getDummyData}
           hasMore={hasMore}
         />
         <div className={styles.mobileControlls}>
