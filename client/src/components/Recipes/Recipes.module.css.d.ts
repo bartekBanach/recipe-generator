@@ -3,6 +3,7 @@ declare const styles: {
   readonly "container": string;
   readonly "content": string;
   readonly "counts": string;
+  readonly "error": string;
   readonly "filters": string;
   readonly "loading": string;
   readonly "missed": string;

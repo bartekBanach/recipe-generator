@@ -17286,7 +17286,7 @@ const dummyData = [
           ]
         }
       ],
-      "spoonacularScore": 66.15689086914062,
+      "spoonacularScore": 66.156,
       "spoonacularSourceUrl": "https://spoonacular.com/lamb-and-fresh-goat-cheese-roulade-649183",
       "usedIngredientCount": 0,
       "missedIngredientCount": 4,

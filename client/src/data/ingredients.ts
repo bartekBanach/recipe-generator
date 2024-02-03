@@ -1,4 +1,3 @@
-import { ingrediantsRaw } from './ingrediantsRaw.ts'
 
 const ingredients = 
     [

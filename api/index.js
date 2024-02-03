@@ -24,7 +24,7 @@ app.get('/recipes', async (req, res) => {
         params: {
             includeIngredients: req.query.ingredients, 
             type: 'main course', 
-            number: 3, 
+            number: 6, 
             sort: 'max-used-ingredients', 
             addRecipeInformation: true, 
             fillIngredients: true,
@@ -76,9 +76,7 @@ app.get('/recipe/:id', async (req, res) => {
 
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+
 
 app.listen(4000, () => console.log(`Server is running on port ${PORT}`))
 

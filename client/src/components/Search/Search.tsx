@@ -26,7 +26,7 @@ const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
       return ingredients.filter((item) =>
         item.name.toLowerCase().includes(query.toLowerCase()),
       );
-  }, [ingredients, query]);
+  }, [query]);
 
   const handleClick = (value: Ingredient) => {
     if (!selected.includes(value)) {

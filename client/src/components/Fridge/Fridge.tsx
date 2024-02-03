@@ -1,6 +1,6 @@
 import Search from '../Search/Search';
 import { IoMdCloseCircle } from 'react-icons/io';
-import styles, { ingredientsHeading } from './Fridge.module.css';
+import styles from './Fridge.module.css';
 import essentialsList from '../../data/ingredientsEssential';
 import ingredientsList from '../../data/ingredients';
 import { FaCheck } from 'react-icons/fa6';

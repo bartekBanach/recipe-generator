@@ -36,14 +36,13 @@
 }
 
 .gridWrapper {
-  position: relative; /* or position: absolute; or position: fixed; */
+  position: relative; 
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
-  gap: 2rem;
+  column-gap: 2rem;
   width: 95%;
   padding: 2rem;
   margin: 0 auto;
-
 
 }
 
