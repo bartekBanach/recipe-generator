@@ -5,6 +5,7 @@ declare const styles: {
   readonly "deleteIcn": string;
   readonly "essential": string;
   readonly "essentials": string;
+  readonly "headingIcon": string;
   readonly "ingredient": string;
   readonly "ingredientHeader": string;
   readonly "ingredientImg": string;

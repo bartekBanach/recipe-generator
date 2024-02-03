@@ -6,6 +6,8 @@
     background-color: var(--gray200);
     max-height: 100vh;
     overflow-y: hidden;
+    position: relative;
+
 }
 
 
@@ -26,7 +28,7 @@
 }
 
 .loading {
-    opacity: 0.50;
+    opacity: 0.20;
 }
 
 .filters {
@@ -36,12 +38,13 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding: 0em 2em;
 
 }
 
 .filters select {
     max-height: 100px;
-    /*overflow: auto;*/
+    overflow: auto;
     border: 3px solid var(--gray100);
     background-color: var(--white);
     border-radius: 0.3em;
@@ -51,6 +54,10 @@
     min-height: 1.5em;
     font-size: 1rem;
     padding: 0.3em 0.5em;
+}
+
+.filters select > option {
+    font-size: 1rem;
 }
 
 .recipes {
@@ -155,6 +162,10 @@
 
 .communicat {
     text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 1em;
+    width: 100%;
+    grid-column: 1 / span 3;
 }
 
 

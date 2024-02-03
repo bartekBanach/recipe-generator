@@ -79,13 +79,21 @@
 
 }
 
-.ingredients h3 {
+.ingredients h3{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.3em;
 }
+
+.headingIcon {
+    color: var(--gray400);
+    font-size: 1.2em;
+
+}
+
+
 
 .ingredients p {
     text-align: center;
@@ -106,14 +114,16 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    background-color: var(--gray100);
+    background-color: var(--white);
     border-radius: 0.5rem;
     border: 1px solid var(--gray300);
     padding: 0.5rem;
+    background-color: #FABC3C;
 }
 
 .ingredient svg {
-    color: var(--gray);
+    color: var(--white);
+    background-color: #FABC3C;;
 
 }
 

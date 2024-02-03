@@ -4,6 +4,7 @@ declare const styles: {
   readonly "container": string;
   readonly "header": string;
   readonly "highlighted": string;
+  readonly "icon": string;
   readonly "option": string;
   readonly "options": string;
   readonly "selected": string;

@@ -9,11 +9,13 @@
   .absolute {
     width: fit-content;
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 30%;
+
+    left: 0;
     right: 0;
-    top: 55%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    margin: 0 auto;
   
     z-index: 1;
   }
@@ -31,14 +33,16 @@
     height:100px;
     width: 100px;
     border: 15px solid var(--gray300);
-    border-top-color: var(--blue);
+    border-top-color: var(--gray400);
+    margin-bottom: 1em;
   }
 
   .small {
     height: 30px;
     width: 30px;
     border: 7px solid var(--gray300);
-    border-top-color: var(--blue);
+    border-top-color: var(--gray400);
+
   }
 
   

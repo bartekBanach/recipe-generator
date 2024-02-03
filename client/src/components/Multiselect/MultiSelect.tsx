@@ -112,7 +112,7 @@ const MultiSelect = ({
         onClick={() => setOpen((prev) => !prev)}
       >
         {placeholder}
-        {value.length > 0 && ` (${value.length})`}
+        {value.length > 0 && `(${value.length})`}
       </div>
 
       <button
@@ -124,7 +124,7 @@ const MultiSelect = ({
           setOpen(false);
         }}
       >
-        <AiOutlineClose />
+        <AiOutlineClose className={styles.icon} />
       </button>
       <button
         aria-label="open"
@@ -133,7 +133,10 @@ const MultiSelect = ({
         onClick={() => setOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
       >
-        <IoIosArrowDown style={open && { transform: 'rotate(180deg)' }} />
+        <IoIosArrowDown
+          className={styles.icon}
+          style={open && { transform: 'rotate(180deg)' }}
+        />
       </button>
 
       <ul

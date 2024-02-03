@@ -41,7 +41,7 @@ function App() {
   return (
     <div className={styles.container}>
       <h1 className={styles.logo}>
-        Recipe's Generator <IoRestaurant />{' '}
+        Recipes Generator <IoRestaurant />{' '}
       </h1>
 
       <div className={styles.gridWrapper}>

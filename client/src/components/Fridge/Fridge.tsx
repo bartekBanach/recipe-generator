@@ -1,6 +1,6 @@
 import Search from '../Search/Search';
 import { IoMdCloseCircle } from 'react-icons/io';
-import styles from './Fridge.module.css';
+import styles, { ingredientsHeading } from './Fridge.module.css';
 import essentialsList from '../../data/ingredientsEssential';
 import ingredientsList from '../../data/ingredients';
 import { FaCheck } from 'react-icons/fa6';
@@ -53,7 +53,8 @@ const Fridge = ({
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Ingredients</h2>
       <p className={styles.instructions}>
-        Enter ingredients you have to generate possible recipes.
+        Enter ingredients you own to generate meals that you can make using
+        them.
       </p>
       <Search
         selected={ingredients}
@@ -79,7 +80,7 @@ const Fridge = ({
 
       <div className={styles.ingredients}>
         <h3>
-          My ingredients <IoMdListBox />
+          My ingredients <IoMdListBox className={styles.headingIcon} />
         </h3>
 
         {ingredients.length > 0 ? (

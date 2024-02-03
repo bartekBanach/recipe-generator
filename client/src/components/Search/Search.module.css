@@ -17,13 +17,17 @@
     border: 1px solid var(--gray300);
     font-size: 1.1rem;
     padding: 0.6em;
+    background-color: var(--white);
+
 }
 
-.searchbar svg {
+.searchIcon {
     position: absolute;
     right: 0.7rem;
     height: 100%;
     color: var(--gray);
+    z-index: 1;
+    background-color: var(--white);
 }
 
 
@@ -41,7 +45,8 @@
 
 .option {
     padding: 0.4rem;
-    font-size: 1rem;
+    padding-right: 0.8rem;
+    font-size: 1.1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -50,6 +55,16 @@
     border-bottom: 1px solid var(--gray300);
 
 }
+
+
+.option svg {
+    pointer-events: none;
+    color: var(--blue);
+    font-size: 1.3rem;
+    
+
+}
+
 
 .option.highlighted {
     background-color: lightgray;

@@ -68,7 +68,6 @@ const Recipes = ({
     });
   };
 
-  if (error) return <>Couldnt't load recipes due to network error</>;
   return (
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Recipes</h2>
@@ -108,7 +107,9 @@ const Recipes = ({
             ))}
           </select>
         </div>
-        {loading && offset === 0 && <Spinner text="" display="absolute" />}
+        {loading && offset === 0 && (
+          <Spinner text="Loading recipes..." display="absolute" />
+        )}
         <div
           className={`${styles.recipes} ${
             loading && offset === 0 && styles.loading

@@ -4,8 +4,7 @@ import styles from './Search.module.css';
 import ingredients from '../../data/ingredients.ts';
 import { FaCirclePlus, FaCircleMinus } from 'react-icons/fa6';
 import useOutsideClick from '../../hooks/useOutsideClick.tsx';
-import { FaSearch } from "react-icons/fa";
-
+import { FaSearch } from 'react-icons/fa';
 
 type SearchProps = {
   selected: Array<Ingredient>;
@@ -42,41 +41,37 @@ const Search = ({ selected, setSelected, setOffset }: SearchProps) => {
   return (
     <>
       <div className={styles.container}>
-
         <div className={styles.searchbar}>
           <input
-            type='search'
-            placeholder='Find ingredients...'
+            type="search"
+            placeholder="Find ingredients..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setOpen(true)}
-          >
-          </input>
-          <FaSearch/>
+          ></input>
+          <FaSearch className={styles.searchIcon} />
           {filteredIngredients.length !== 0 && open && (
-        <ul className={styles.autocomplete} ref={autocompleteRef}>
-          {filteredIngredients.slice(0, 15).map((item) => (
-            <li
-              key={item.id}
-              className={`${styles.option} ${
-                item.id === highlighted && styles.highlighted
-              }`}
-              onClick={() => handleClick(item)}
-              onMouseEnter={() => setHighlighted(item.id)}
-            >
-              {item.name}
-              {selected.includes(item) ? (
-                <FaCircleMinus />
-              ) : (
-                <FaCirclePlus />
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+            <ul className={styles.autocomplete} ref={autocompleteRef}>
+              {filteredIngredients.slice(0, 15).map((item) => (
+                <li
+                  key={item.id}
+                  className={`${styles.option} ${
+                    item.id === highlighted && styles.highlighted
+                  }`}
+                  onClick={() => handleClick(item)}
+                  onMouseEnter={() => setHighlighted(item.id)}
+                >
+                  {item.name}
+                  {selected.includes(item) ? (
+                    <FaCircleMinus />
+                  ) : (
+                    <FaCirclePlus />
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-
-
       </div>
     </>
   );
