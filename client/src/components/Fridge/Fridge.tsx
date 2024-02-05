@@ -97,10 +97,6 @@ const Fridge = ({
                     <IoMdCloseCircle className={styles.deleteIcn} />
                   </button>
                 </div>
-
-                {/*<img className={styles.ingredientImg} 
-            src={`https://spoonacular.com/cdn/ingredients_100x100/${item.name.replace(' ', '-')}.jpg`} 
-        />*/}
               </li>
             ))}
           </ul>

@@ -14,6 +14,8 @@
     text-align: center;
     color: var(--gray);
     font-size: 1.1rem;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .container h2 {
@@ -33,7 +35,9 @@
 
 .essentials {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(85px, 0.5fr));
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     width: 85%;
     margin: 0 auto;
@@ -54,7 +58,6 @@
     gap: 0.5rem;
     align-items: center;
     font-size: 1rem;
-    font-family: 'RobotoMono';
     border-radius: 0.5em;
 
 }
@@ -71,11 +74,12 @@
     padding: 1.3rem;
     background-color: #FFF9C5;
     gap: 1rem;
-    margin: 0 2rem;
+    margin: 0 auto;
     border: 1px solid var(--gray300);
     border-radius: 0.5em;
     overflow-y: scroll;
     margin-bottom: 2rem;
+    width: 85%;
 
 }
 

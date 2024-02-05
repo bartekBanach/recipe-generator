@@ -75,7 +75,6 @@
   }
   
   .checkbox {
-    background-color: red;
     margin: 10px;
   }
   
@@ -86,6 +85,8 @@
   .option.selected {
     background-color: blue;
   }
+
+
 
  
   
