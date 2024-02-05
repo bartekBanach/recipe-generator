@@ -8,8 +8,14 @@ type SpinnerProps = {
 
 const Spinner = ({ text = '', size = '', display = '' }: SpinnerProps) => {
   return (
-    <div className={`${styles.container} ${styles[display]}`}>
-      <div className={`${styles.spinner} ${styles[size]}`} />
+    <div
+      className={`${styles.container} ${
+        styles[display as keyof typeof styles]
+      }`}
+    >
+      <div
+        className={`${styles.spinner} ${styles[size as keyof typeof styles]}`}
+      />
       <h3>{text}</h3>
     </div>
   );

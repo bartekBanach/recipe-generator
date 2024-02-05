@@ -8,7 +8,6 @@ type MultiSelectProps = {
   options: Option[];
   value: Option[];
   placeholder: string;
-  //onChange: React.Dispatch<React.SetStateAction<Option[]>>;
   onChange: (value: Option[]) => void;
 };
 

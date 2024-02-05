@@ -3,7 +3,7 @@ import cuisines from '../../data/cuisines.ts';
 import mealTypes from '../../data/mealTypes.ts';
 import intolerances from '../../data/intolerances.ts';
 import diets from '../../data/diets.ts';
-import MultiSelect from '../Multiselect/Multiselect.tsx';
+import MultiSelect from '../MultiSelect/MultiSelect.tsx';
 import Spinner from '../Spinner/Spinner.tsx';
 import { FiExternalLink } from 'react-icons/fi';
 import { useRef, useEffect } from 'react';
@@ -85,19 +85,25 @@ const Recipes = ({
             options={cuisines}
             value={filters.cuisines}
             placeholder="cuisine"
-            onChange={(value) => changeFilterAttribute(value, 'cuisines')}
+            onChange={(value: Option[]) =>
+              changeFilterAttribute(value, 'cuisines')
+            }
           />
           <MultiSelect
             options={diets}
             value={filters.diets}
             placeholder="diets"
-            onChange={(value) => changeFilterAttribute(value, 'diets')}
+            onChange={(value: Option[]) =>
+              changeFilterAttribute(value, 'diets')
+            }
           />
           <MultiSelect
             options={intolerances}
             value={filters.intolerances}
             placeholder="intolerances"
-            onChange={(value) => changeFilterAttribute(value, 'intolerances')}
+            onChange={(value: Option[]) =>
+              changeFilterAttribute(value, 'intolerances')
+            }
           />
 
           <select
