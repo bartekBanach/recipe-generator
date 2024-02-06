@@ -6,6 +6,9 @@ declare const styles: {
   readonly "error": string;
   readonly "filters": string;
   readonly "loading": string;
+  readonly "loadingAnimation": string;
+  readonly "loadingDots": string;
+  readonly "loadingText": string;
   readonly "missed": string;
   readonly "mobileHidden": string;
   readonly "moreButton": string;

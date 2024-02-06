@@ -153,7 +153,15 @@ const Recipes = ({
 
           {hasMore ? (
             <div className={styles.moreResults}>
-              {offset > 0 && <Spinner size="small" />}
+              {offset > 0 && (
+                <div className={styles.loadingAnimation}>
+                  <Spinner size="small" />
+
+                  <div className={styles.loadingText}>
+                    Loading<span className={styles.loadingDots}>....</span>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <p className={styles.communicat}>No more recipes to load.</p>
