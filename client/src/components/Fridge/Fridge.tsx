@@ -37,12 +37,6 @@ const Fridge = ({
       }
     }
     setOffset(0);
-
-    /*if (ingredients.includes(item)) {
-      setIngredients(ingredients.filter((i) => i.id !== item.id));
-    } else {
-      setIngredients((prev) => [...prev, item]);
-    }*/
   };
 
   const isChecked = (item: Ingredient) => {

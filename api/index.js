@@ -12,9 +12,11 @@ app.use(cors())
 app.get('/recipes', async (req, res) => {
 
 
-    console.log(req.query.ingredients);
+    /*console.log(req.query.ingredients);
     console.log(req.query.cuisine);
     console.log(req.query.diet)
+    console.log('type:', req.query.type)*/
+
 
     const options = {
         method: 'GET',
@@ -23,7 +25,6 @@ app.get('/recipes', async (req, res) => {
         url: 'https://api.spoonacular.com/recipes/complexSearch',
         params: {
             includeIngredients: req.query.ingredients, 
-            type: 'main course', 
             number: 6, 
             sort: 'max-used-ingredients', 
             addRecipeInformation: true, 
@@ -32,7 +33,7 @@ app.get('/recipes', async (req, res) => {
             cuisine: req.query.cuisine,
             diet: req.query.diets,
             intolerances: req.query.intolerances,
-            type: req.query.mealType,
+            type: req.query.type,
 
         },
         headers: {

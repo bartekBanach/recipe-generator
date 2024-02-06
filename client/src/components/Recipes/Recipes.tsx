@@ -34,10 +34,15 @@ const Recipes = ({
 }: RecipesProps) => {
   const observerTarget = useRef<HTMLSpanElement>(null);
   const firstCallImminent = useRef<boolean>(true);
-  const changeFilterAttribute = (value: Option[], attribute: string) => {
+  const changeFilterAttribute = (
+    value: Option[] | string,
+    attribute: string,
+  ) => {
     setFilters((prev) => ({ ...prev, [attribute]: value }));
     setOffset(0);
   };
+
+  console.log(filters);
 
   useEffect(() => {
     let observerTargetValue: HTMLSpanElement | null = null;
@@ -108,9 +113,7 @@ const Recipes = ({
 
           <select
             value={filters.mealType}
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, mealType: e.target.value }))
-            }
+            onChange={(e) => changeFilterAttribute(e.target.value, 'mealType')}
           >
             <option value="">meal type</option>
             {mealTypes.map((item) => (
