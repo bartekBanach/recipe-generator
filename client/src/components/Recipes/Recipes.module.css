@@ -31,34 +31,7 @@
     opacity: 0.20;
 }
 
-.filters {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0em 2em;
 
-}
-
-.filters select {
-    max-height: 100px;
-    overflow: auto;
-    border: 3px solid var(--gray100);
-    background-color: var(--white);
-    border-radius: 0.3em;
-    display: flex;
-    position: relative;
-    width: 15ch;
-    min-height: 1.5em;
-    font-size: 1rem;
-    padding: 0.3em 0.5em;
-}
-
-.filters select > option {
-    font-size: 1rem;
-}
 
 .recipes {
     display: grid;

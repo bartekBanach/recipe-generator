@@ -1,9 +1,9 @@
 import styles from './App.module.css';
 import { useState } from 'react';
-import Fridge from './components/Fridge/Fridge';
-import Recipes from './components/Recipes/Recipes';
+import Fridge from '../components/Fridge/Fridge';
+import Recipes from '../components/Recipes/Recipes';
 import { IoRestaurant } from 'react-icons/io5';
-import useFetchRecipes from './hooks/useFetchRecipes';
+import useFetchRecipes from '../hooks/useFetchRecipes';
 
 function App() {
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);

@@ -1,13 +1,9 @@
 import styles from './Recipes.module.css';
-import cuisines from '../../data/cuisines.ts';
-import mealTypes from '../../data/mealTypes.ts';
-import intolerances from '../../data/intolerances.ts';
-import diets from '../../data/diets.ts';
-import MultiSelect from '../MultiSelect/MultiSelect.tsx';
 import Spinner from '../Spinner/Spinner.tsx';
 import { FiExternalLink } from 'react-icons/fi';
 import { useRef, useEffect } from 'react';
 import { BiSolidError } from 'react-icons/bi';
+import FiltersSection from '../FiltersSection/FiltersSection.tsx';
 
 type RecipesProps = {
   recipes: Recipe[];
@@ -41,8 +37,6 @@ const Recipes = ({
     setFilters((prev) => ({ ...prev, [attribute]: value }));
     setOffset(0);
   };
-
-  console.log(filters);
 
   useEffect(() => {
     let observerTargetValue: HTMLSpanElement | null = null;
@@ -85,44 +79,12 @@ const Recipes = ({
       <h2>Recipes</h2>
 
       <div className={styles.content}>
-        <div className={styles.filters}>
-          <MultiSelect
-            options={cuisines}
-            value={filters.cuisines}
-            placeholder="cuisine"
-            onChange={(value: Option[]) =>
-              changeFilterAttribute(value, 'cuisines')
-            }
-          />
-          <MultiSelect
-            options={diets}
-            value={filters.diets}
-            placeholder="diets"
-            onChange={(value: Option[]) =>
-              changeFilterAttribute(value, 'diets')
-            }
-          />
-          <MultiSelect
-            options={intolerances}
-            value={filters.intolerances}
-            placeholder="intolerances"
-            onChange={(value: Option[]) =>
-              changeFilterAttribute(value, 'intolerances')
-            }
-          />
+        <FiltersSection
+          filters={filters}
+          setFilters={setFilters}
+          setOffset={setOffset}
+        />
 
-          <select
-            value={filters.mealType}
-            onChange={(e) => changeFilterAttribute(e.target.value, 'mealType')}
-          >
-            <option value="">meal type</option>
-            {mealTypes.map((item) => (
-              <option key={item.id} value={item.name}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </div>
         {loading && offset === 0 && (
           <Spinner text="Loading recipes..." display="absolute" />
         )}
