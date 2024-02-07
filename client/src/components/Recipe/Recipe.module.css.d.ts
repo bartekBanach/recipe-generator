@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "count": string;
   readonly "counts": string;
   readonly "missed": string;
   readonly "recipe": string;

@@ -46,57 +46,59 @@ const Fridge = ({
   return (
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Ingredients</h2>
-      <p className={styles.instructions}>
-        Enter ingredients you own to generate meals that you can make using
-        them.
-      </p>
-      <Search
-        selected={ingredients}
-        setSelected={setIngredients}
-        setOffset={setOffset}
-      />
-      <h3>Essential ingredients</h3>
-      <div className={styles.essentials}>
-        {essentialsList.map((item) => (
-          <button
-            key={item.id}
-            className={`${styles.essential} ${
-              isChecked(item) && styles.checked
-            }`}
-            name={item.name}
-            onClick={() => handleChange(item)}
-          >
-            {item.name}
-            {isChecked(item) && <FaCheck />}
-          </button>
-        ))}
-      </div>
+      <div className={styles.content}>
+        <p className={styles.instructions}>
+          Enter ingredients you own to generate meals that you can make using
+          them.
+        </p>
+        <Search
+          selected={ingredients}
+          setSelected={setIngredients}
+          setOffset={setOffset}
+        />
+        <h3>Essential ingredients</h3>
+        <div className={styles.essentials}>
+          {essentialsList.map((item) => (
+            <button
+              key={item.id}
+              className={`${styles.essential} ${
+                isChecked(item) && styles.checked
+              }`}
+              name={item.name}
+              onClick={() => handleChange(item)}
+            >
+              {item.name}
+              {isChecked(item) && <FaCheck />}
+            </button>
+          ))}
+        </div>
 
-      <div className={styles.ingredients}>
-        <h3>
-          My ingredients <IoMdListBox className={styles.headingIcon} />
-        </h3>
+        <div className={styles.ingredients}>
+          <h3>
+            My ingredients <IoMdListBox className={styles.headingIcon} />
+          </h3>
 
-        {ingredients.length > 0 ? (
-          <ul>
-            {ingredients.map((item) => (
-              <li key={item.id} className={styles.ingredient}>
-                <div className={styles.ingredientHeader}>
-                  {item.name}
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(item)}
-                    className={styles.deleteBtn}
-                  >
-                    <IoMdCloseCircle className={styles.deleteIcn} />
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Ingredients list is empty.</p>
-        )}
+          {ingredients.length > 0 ? (
+            <ul>
+              {ingredients.map((item) => (
+                <li key={item.id} className={styles.ingredient}>
+                  <div className={styles.ingredientHeader}>
+                    {item.name}
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(item)}
+                      className={styles.deleteBtn}
+                    >
+                      <IoMdCloseCircle className={styles.deleteIcn} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Ingredients list is empty.</p>
+          )}
+        </div>
       </div>
     </div>
   );

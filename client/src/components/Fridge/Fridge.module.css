@@ -3,10 +3,17 @@
     border: 1px solid var(--gray300);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     background-color: var(--gray200);
     max-height: 100vh;
+
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     overflow-y: scroll;
+    padding-top: 2rem;
 
 }
 
@@ -59,6 +66,7 @@
     align-items: center;
     font-size: 1rem;
     border-radius: 0.5em;
+    background-color: var(--gray200);
 
 }
 
@@ -77,7 +85,6 @@
     margin: 0 auto;
     border: 1px solid var(--gray300);
     border-radius: 0.5em;
-    overflow-y: scroll;
     margin-bottom: 2rem;
     width: 85%;
 
@@ -123,11 +130,12 @@
     border: 1px solid var(--gray300);
     padding: 0.5rem;
     background-color: #FABC3C;
+
 }
 
 .ingredient svg {
     color: var(--white);
-    background-color: #FABC3C;;
+    background-color: #FABC3C;
 
 }
 

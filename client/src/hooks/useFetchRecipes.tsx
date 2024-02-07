@@ -39,8 +39,6 @@ export default function useFetchRecipes({
       setLoading(true);
       setError(false);
 
-      console.log('filters type', filters.mealType);
-
       try {
         const res = await axios.request({
           method: 'GET',
@@ -65,8 +63,8 @@ export default function useFetchRecipes({
         setLoading(false);
       }
     };
-    //getDummyData();
-    getRecipes();
+    getDummyData();
+    //getRecipes();
   }, [offset, ingredients, filters]);
 
   return { results, loading, error, hasMore };

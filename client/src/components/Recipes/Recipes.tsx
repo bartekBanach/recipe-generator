@@ -71,7 +71,7 @@ const Recipes = ({
         />
 
         {loading && offset === 0 && (
-          <Spinner text="Loading recipes..." display="absolute" />
+          <Spinner text="Loading recipes..." position="absolute" />
         )}
         <div
           className={`${styles.recipes} ${

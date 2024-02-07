@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "checked": string;
   readonly "container": string;
+  readonly "content": string;
   readonly "deleteBtn": string;
   readonly "deleteIcn": string;
   readonly "essential": string;

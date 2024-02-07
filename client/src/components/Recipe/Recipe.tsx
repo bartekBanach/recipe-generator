@@ -19,14 +19,15 @@ const Recipe = React.forwardRef(
 
         <div className={styles.recipeContent}>
           <a href={recipe.sourceUrl} className={styles.recipeName}>
-            {recipe.title} <FiExternalLink />
+            {recipe.title}
+            <FiExternalLink />
           </a>
           <div className={styles.counts}>
-            <div className={styles.missed}>
-              <b>missed: {recipe.missedIngredientCount}</b>
+            <div className={`${styles.count} ${styles.used}`}>
+              <p>used: {recipe.usedIngredientCount}</p>
             </div>
-            <div className={styles.used}>
-              <b>used: {recipe.usedIngredientCount}</b>
+            <div className={`${styles.count} ${styles.missed}`}>
+              <p>missed: {recipe.missedIngredientCount}</p>
             </div>
           </div>
         </div>
