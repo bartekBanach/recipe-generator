@@ -9,19 +9,16 @@ require('dotenv').config()
 const app = express()
 app.use(cors())
 
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+ });
+
 app.get('/recipes', async (req, res) => {
-
-
-    /*console.log(req.query.ingredients);
-    console.log(req.query.cuisine);
-    console.log(req.query.diet)
-    console.log('type:', req.query.type)*/
-
 
     const options = {
         method: 'GET',
-        //url: 'https://api.spoonacular.com/recipes/findByIngredients',
-        //params: {ingredients: 'cheese,flour,broccoli,eggs', number: 25, ranking: 2, ignorePantry: true},
         url: 'https://api.spoonacular.com/recipes/complexSearch',
         params: {
             includeIngredients: req.query.ingredients, 
@@ -56,7 +53,6 @@ app.get('/recipes', async (req, res) => {
 app.get('/recipe/:id', async (req, res) => {
 
     const id = Number(req.params.id);
-    //157111,157103
     console.log(id)
 
     const options = {
