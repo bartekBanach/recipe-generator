@@ -65,8 +65,8 @@ export default function useFetchRecipes({
         setLoading(false);
       }
     };
-    getDummyData();
-    //getRecipes();
+    //getDummyData();
+    getRecipes();
   }, [offset, ingredients, filters]);
 
   return { results, loading, error, hasMore };

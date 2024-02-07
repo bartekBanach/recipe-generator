@@ -47,6 +47,7 @@
 .observerTarget {
     height: 0; 
     background-color: red;
+    border: 1px solid purple;
 }
 
 .recipe {
@@ -122,7 +123,7 @@
 
 .moreResults {
     width: fit-content;
-    margin: 0 auto;
+    margin: 1rem auto;
     display: flex;
     gap: 1rem;
 }
