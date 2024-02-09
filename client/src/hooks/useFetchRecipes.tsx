@@ -42,7 +42,7 @@ export default function useFetchRecipes({
       try {
         const res = await axios.request({
           method: 'GET',
-          url: import.meta.env.VITE_PROXY_URL,
+          url: `${import.meta.env.VITE_PROXY_URL}/recipes`,
           params: {
             ingredients: ingredients.map((item) => item.name).join(','),
             offset: offset,

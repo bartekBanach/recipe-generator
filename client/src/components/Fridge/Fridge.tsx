@@ -47,17 +47,18 @@ const Fridge = ({
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Ingredients</h2>
       <div className={styles.content}>
-        <p className={styles.instructions}>
+        {/*<p className={styles.instructions}>
           Enter ingredients you own to generate meals that you can make using
           them.
-        </p>
+  </p>*/}
         <Search
           selected={ingredients}
           setSelected={setIngredients}
           setOffset={setOffset}
         />
-        <h3>Essential ingredients</h3>
         <div className={styles.essentials}>
+          <h3>Essential ingredients</h3>
+
           {essentialsList.map((item) => (
             <button
               key={item.id}
@@ -96,7 +97,10 @@ const Fridge = ({
               ))}
             </ul>
           ) : (
-            <p>Ingredients list is empty.</p>
+            <p className={styles.noIngredientsMsg}>
+              Ingredients list is empty. Add ingredients to find possible
+              recipes.
+            </p>
           )}
         </div>
       </div>

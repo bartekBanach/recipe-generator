@@ -18,6 +18,8 @@
   text-align: center;
   font-family: 'RobotoSlab';
   margin: 0 auto;
+  padding-top: 1rem;
+
   width: fit-content;
   color: var(--white);
   font-size: 4rem;
@@ -70,12 +72,15 @@
 
 .control label {
   padding: 0.7rem;
-  background-color: var(--gray300);
+  background-color: var(--gray200);
   font-size: 1.1rem;
+  border-radius: 0.3em;
+  border: 1px solid var(--gray300);
+  font-family: 'RobotoSlab';
 }
 .control input:checked + label {
   color: var(--white);
-  background-color: orange;
+  background-color: var(--blue);
 }
 
 

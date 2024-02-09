@@ -13,6 +13,7 @@ declare const styles: {
   readonly "ingredients": string;
   readonly "instructions": string;
   readonly "mobileHidden": string;
+  readonly "noIngredientsMsg": string;
 };
 export = styles;
 

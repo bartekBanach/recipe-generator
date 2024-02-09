@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"tcm --watch .\"",
+    "dev": "concurrently \"vite --port 3000\" \"tcm --watch .\"",
     "check:up-to-date-types": "tcm --listDifferent .",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
