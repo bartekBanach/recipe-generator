@@ -3,12 +3,19 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'RobotoMono';
+
+}
+
+body {
+  background-color: var(--background);
+
 }
 
 
 
 .container {
   background-color: var(--background);
+  height: fit-content;
   
 
 }
@@ -22,7 +29,7 @@
 
   width: fit-content;
   color: var(--white);
-  font-size: 4rem;
+  font-size: clamp(2rem, 4vw, 4rem);
   filter: drop-shadow(0.05em 0.05em 0.05em var(--gray));
   gap: 0.3em;
 }
@@ -89,15 +96,15 @@
 
 
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
 
   .logo {
-    font-size: 3rem;
+    /*font-size: 3rem;*/
   }
   .gridWrapper {
     display: flex;
     flex-direction: column;
-    height:auto;
+    height: fit-content;
     padding: 2rem 0;
 
 

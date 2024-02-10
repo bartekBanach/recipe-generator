@@ -56,52 +56,56 @@ const Fridge = ({
           setSelected={setIngredients}
           setOffset={setOffset}
         />
-        <div className={styles.essentials}>
-          <h3>Essential ingredients</h3>
 
-          {essentialsList.map((item) => (
-            <button
-              key={item.id}
-              className={`${styles.essential} ${
-                isChecked(item) && styles.checked
-              }`}
-              name={item.name}
-              onClick={() => handleChange(item)}
-            >
-              {item.name}
-              {isChecked(item) && <FaCheck />}
-            </button>
-          ))}
-        </div>
-
-        <div className={styles.ingredients}>
-          <h3>
-            My ingredients <IoMdListBox className={styles.headingIcon} />
-          </h3>
-
-          {ingredients.length > 0 ? (
-            <ul>
-              {ingredients.map((item) => (
-                <li key={item.id} className={styles.ingredient}>
-                  <div className={styles.ingredientHeader}>
-                    {item.name}
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(item)}
-                      className={styles.deleteBtn}
-                    >
-                      <IoMdCloseCircle className={styles.deleteIcn} />
-                    </button>
-                  </div>
-                </li>
+        <div className={styles.gridWrapper}>
+          <div className={styles.essentials}>
+            <h3>Essential ingredients</h3>
+            <div>
+              {essentialsList.map((item) => (
+                <button
+                  key={item.id}
+                  className={`${styles.essential} ${
+                    isChecked(item) && styles.checked
+                  }`}
+                  name={item.name}
+                  onClick={() => handleChange(item)}
+                >
+                  {item.name}
+                  {isChecked(item) && <FaCheck />}
+                </button>
               ))}
-            </ul>
-          ) : (
-            <p className={styles.noIngredientsMsg}>
-              Ingredients list is empty. Add ingredients to find possible
-              recipes.
-            </p>
-          )}
+            </div>
+          </div>
+
+          <div className={styles.ingredients}>
+            <h3>
+              My ingredients <IoMdListBox className={styles.headingIcon} />
+            </h3>
+
+            {ingredients.length > 0 ? (
+              <ul>
+                {ingredients.map((item) => (
+                  <li key={item.id} className={styles.ingredient}>
+                    <div className={styles.ingredientHeader}>
+                      {item.name}
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(item)}
+                        className={styles.deleteBtn}
+                      >
+                        <IoMdCloseCircle className={styles.deleteIcn} />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className={styles.noIngredientsMsg}>
+                Ingredients list is empty. Add ingredients to find possible
+                recipes.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

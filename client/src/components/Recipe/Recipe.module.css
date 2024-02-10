@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:#ffd277;
+    background-color:var(--white);
     overflow: hidden;
     border: 1px solid var(--gray300);
 
@@ -82,7 +82,7 @@
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
 
     .count {
      font-size: 1rem;

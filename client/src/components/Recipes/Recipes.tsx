@@ -48,61 +48,62 @@ const Recipes = ({
     [loading, hasMore, setOffset],
   );
 
-  if (error)
-    return (
-      <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
-        <h2>Recipes</h2>
-        <div className={styles.error}>
-          <BiSolidError />
-          <p>Couldn't load recipes due to network error.</p>
-        </div>
-      </div>
-    );
+  const firstPageLoading = offset === 0 && loading;
 
   return (
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Recipes</h2>
-
-      <div className={styles.content}>
-        <FiltersSection
-          filters={filters}
-          setFilters={setFilters}
-          setOffset={setOffset}
-        />
-
-        {loading && offset === 0 && (
-          <Spinner text="Loading recipes..." position="absolute" />
-        )}
-        <div
-          className={`${styles.recipes} ${
-            loading && offset === 0 && styles.loading
-          }`}
-        >
-          {recipes?.map((recipe, i) => {
-            if (i + 1 === recipes.length) {
-              return (
-                <Recipe key={recipe.id} ref={lastElementRef} recipe={recipe} />
-              );
-            }
-            return <Recipe key={recipe.id} recipe={recipe} />;
-          })}
+      {error ? (
+        <div className={styles.error}>
+          <BiSolidError />
+          <p>Couldn't load recipes due to network error.</p>
         </div>
-        {hasMore ? (
-          <div className={styles.moreResults}>
-            {offset > 0 && (
-              <div className={styles.loadingAnimation}>
-                <Spinner size="small" />
+      ) : (
+        <div className={styles.content}>
+          <FiltersSection
+            filters={filters}
+            setFilters={setFilters}
+            setOffset={setOffset}
+          />
 
-                <div className={styles.loadingText}>
-                  Loading<span className={styles.loadingDots}>....</span>
-                </div>
-              </div>
-            )}
+          {firstPageLoading && (
+            <Spinner text="Loading recipes..." position="absolute" />
+          )}
+          <div
+            className={`${styles.recipes} ${
+              firstPageLoading && styles.loading
+            }`}
+          >
+            {recipes?.map((recipe, i) => {
+              if (i + 1 === recipes.length) {
+                return (
+                  <Recipe
+                    key={recipe.id}
+                    ref={lastElementRef}
+                    recipe={recipe}
+                  />
+                );
+              }
+              return <Recipe key={recipe.id} recipe={recipe} />;
+            })}
           </div>
-        ) : (
-          <p className={styles.communicat}>No more recipes to load.</p>
-        )}
-      </div>
+          {hasMore ? (
+            <div className={styles.moreResults}>
+              {!firstPageLoading && (
+                <div className={styles.loadingAnimation}>
+                  <Spinner size="small" />
+
+                  <div className={styles.loadingText}>
+                    Loading<span className={styles.loadingDots}>....</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <p className={styles.communicat}>No more recipes to load.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
