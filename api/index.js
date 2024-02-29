@@ -40,38 +40,19 @@ app.get('/recipes', async (req, res) => {
 
     try {
         const response = await axios.request(options);
-        //const sorted = response.data.results.sort((a,b) => a.missedIngredientCount - b.missedIngredientCount);
-        //const sorted = response.data.results;
         res.status(200).json(response.data);
 
     } catch(error) {
-        console.log(error)
-    }
-
-})
-
-app.get('/recipe/:id', async (req, res) => {
-
-    const id = Number(req.params.id);
-    console.log(id)
-
-    const options = {
-        method: 'GET',
-        url: `https://api.spoonacular.com/recipes/${id}/information`,
-        headers: {
-            'x-api-key': process.env.SPOONACULAR_API_KEY,
+        if (error.response) {
+            res.status(error.response.status).json({ error: error.response.data });
+        } else {
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     }
 
-    try {
-        const response = await axios.request(options);
-
-        res.status(200).json(response.data);
-    } catch(error) {
-        console.log(error)
-    }
-
 })
+
+
 
 
 

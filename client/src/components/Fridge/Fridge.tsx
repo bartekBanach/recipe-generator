@@ -47,10 +47,6 @@ const Fridge = ({
     <div className={`${styles.container} ${hidden && styles.mobileHidden}`}>
       <h2>Ingredients</h2>
       <div className={styles.content}>
-        {/*<p className={styles.instructions}>
-          Enter ingredients you own to generate meals that you can make using
-          them.
-  </p>*/}
         <Search
           selected={ingredients}
           setSelected={setIngredients}
@@ -101,8 +97,8 @@ const Fridge = ({
               </ul>
             ) : (
               <p className={styles.noIngredientsMsg}>
-                Ingredients list is empty. Add ingredients to find possible
-                recipes.
+                Oops! Your ingredients list is empty. Start by adding some
+                ingredients to explore meals you can cook with them!
               </p>
             )}
           </div>

@@ -41,7 +41,7 @@ export default function FiltersSection({
       <MultiSelect
         options={intolerances}
         value={filters.intolerances}
-        placeholder="alergents"
+        placeholder="allergies"
         onChange={(value: Option[]) =>
           changeFilterAttribute(value, 'intolerances')
         }
